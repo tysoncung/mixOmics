@@ -115,8 +115,8 @@ background = NULL)
         if(sum(a) != ncol(temp))
         group.pch = "different"
     }
-    
-    df$pch.levels = factor(as.character(df$pch.levels)) #forced to be character,
+    ## AL: maintaining the orders as requested on GitHub #15
+    df$pch.levels = factor(as.character(df$pch.levels), levels = unique(df$pch.levels)) #forced to be character, 
     #   so that the order of the levels is the same all the time
     #   (1, 10, 11, 12, 2, 3...), instead of changing between ggplot2 and
     #   the rest
