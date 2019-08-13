@@ -53,4 +53,5 @@ Packaged: 2017-02-06 06:49:17 UTC; klecao
 NeedsCompilation: no
 biocViews: ImmunoOncology, Microarray, Sequencing, Metabolomics, Metagenomics, Proteomics,  
            GenePrediction, MultipleComparison, Classification, Regression
+Encoding: UTF-8
 RoxygenNote: 6.1.1
