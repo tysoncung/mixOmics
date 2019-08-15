@@ -62,8 +62,11 @@ all.outputs = TRUE)
         max.iter = max.iter, tol = tol, logratio = logratio, multilevel = multilevel, DA = FALSE, all.outputs=all.outputs)
 
     # choose the desired output from 'result'
+    cl <- match.call()
+    ## evluate the call's expression arguments
+    cl[-1] <- lapply(cl[-1], eval.parent)
     out = list(
-        call = match.call(),
+        call = cl,
         X = result$A[-result$indY][[1]],
         Y = result$A[result$indY][[1]],
         ncomp = result$ncomp,

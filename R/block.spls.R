@@ -89,9 +89,12 @@ all.outputs = TRUE)
     
     # calculate weights for each dataset
     weights = get.weights(result$variates, indY = result$indY)
-
+    
+    cl <- match.call()
+    ## evluate the call's expression arguments
+    cl[-1] <- lapply(cl[-1], eval.parent)
     # choose the desired output from 'result'
-    out=list(call = match.call(),
+    out=list(call = cl,
         X = result$A,
         indY = result$indY,
         ncomp = result$ncomp,
