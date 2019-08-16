@@ -22,6 +22,8 @@ ignore
 
 ^tests/internals$
 ^build-ignore$
+^tests/internals
+buildignore
 
 ^roxygenise\.R$
 ^\.travis\.yml$
@@ -40,3 +42,4 @@ ignore
 ^MD5$
 
 ^vignettes$
+check.Renviron
