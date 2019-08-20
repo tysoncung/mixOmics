@@ -43,3 +43,6 @@ buildignore
 
 ^vignettes$
 check.Renviron
+^Library/
+^\.Rprofile$
+

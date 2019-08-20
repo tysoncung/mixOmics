@@ -38,3 +38,7 @@ inst/*.html
 .Renviron
 gitignore
 
+## do not ever exclude:
+!**/README.md
+Library
+
