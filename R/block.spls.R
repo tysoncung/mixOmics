@@ -92,7 +92,7 @@ all.outputs = TRUE)
     
     cl <- match.call()
     ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval.parent)
+    cl[-1] <- lapply(cl[-1], eval)
     # choose the desired output from 'result'
     out=list(call = cl,
         X = result$A,

@@ -83,7 +83,7 @@ all.outputs = TRUE)
     weights = get.weights(result$variates, indY = result$indY)
     cl <- match.call()
     ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval.parent)
+    cl[-1] <- lapply(cl[-1], eval)
     # choose the desired output from 'result'
     out=list(call = cl,
         X = result$A,

@@ -177,7 +177,7 @@ multilevel = NULL)
     cl = match.call()
     cl[[1]] = as.name('pca')
     ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval.parent)
+    cl[-1] <- lapply(cl[-1], eval)
     result = list(call = cl, X = X, ncomp = ncomp,NA.X = NA.X,
     center = if (is.null(cen)) {FALSE} else {cen},
     scale = if (is.null(sc)) {FALSE} else {sc},

@@ -64,7 +64,7 @@ all.outputs = TRUE)
     # choose the desired output from 'result'
     cl <- match.call()
     ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval.parent)
+    cl[-1] <- lapply(cl[-1], eval)
     out = list(
         call = cl,
         X = result$A[-result$indY][[1]],

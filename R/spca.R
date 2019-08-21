@@ -269,7 +269,7 @@ function(X,
     cl = match.call()
 	cl[[1]] = as.name('spca')
 	## evluate the call's expression arguments
-	cl[-1] <- lapply(cl[-1], eval.parent)
+	cl[-1] <- lapply(cl[-1], eval)
     result = (list(call = cl, X = X,
 		   ncomp = ncomp,	
                    #sdev = sdev,  # KA: to add if biplot function (but to be fixed!)
