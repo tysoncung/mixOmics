@@ -38,6 +38,8 @@ importFrom("rARPACK","svds")
 
 importFrom("gridExtra", "grid.arrange")
 
+importFrom("snow", "makeCluster", "clusterEvalQ")
+
 export(
 auroc,
 background.predict,
