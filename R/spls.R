@@ -142,6 +142,7 @@ NULL
     if(any(c("formula", "data") %in% names(mc))){
         mc <- .plsMethodsHelper(mc=mc)
     }
+    logratio <- mc$logratio <- .matchArg(logratio)
     mc$DA <- FALSE
     # # call to '.mintWrapper'
     result <- do.call(.mintWrapper, mc)

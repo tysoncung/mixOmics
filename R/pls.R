@@ -137,6 +137,7 @@ NULL
     mc$ret.call <- NULL ## not need by wrapper
     ## make sure mode matches given arguments, and if it is not provided put as the first one in the definition
     mc$mode <- .matchArg(mode)
+    logratio <- mc$logratio <- .matchArg(logratio)
     mc$DA <- FALSE
     # # call to '.mintWrapper'
     result <- do.call(.mintWrapper, mc)
