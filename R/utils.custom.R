@@ -49,7 +49,7 @@
 ## custom match.arg with call.=FALSE for stop()
 .matchArg <- function(arg, choices, several.ok = FALSE)
 {
-  if (missing(choices)) {
+  if (is_null(choices)) {
     formal.args <- formals(sys.function(sysP <- sys.parent()))
     choices <- eval(formal.args[[as.character(substitute(arg))]],
                     envir = sys.frame(sysP))
@@ -74,4 +74,25 @@
   if (!several.ok && length(i) > 1)
     stop("there is more than one match in 'match.arg'")
   choices[i]
+}
+
+## ----------- match.call.defaults ----------- 
+## match.call including defaults
+## https://stackoverflow.com/questions/14397364/match-call-with-default-arguments/
+match.call.defaults <- function(...) {
+  call <- evalq(match.call(expand.dots = FALSE), parent.frame(1))
+  formals <- evalq(formals(), parent.frame(1))
+  
+  for (i in setdiff(names(formals), names(call)))
+    call[i] <- list( formals[[i]] )
+  
+  
+  match.call(sys.function(sys.parent()), call)
+}
+
+## ----------- is_null ----------- 
+## missing or NULL
+
+is_null <- function(arg) {
+  missing(arg) || is.null(arg)
 }

@@ -292,70 +292,98 @@ setGeneric("splsda", def = function(X, Y, formula=NULL, ncomp = 2, mode = c("reg
   return(invisible(out))
 }
 
-#############################################################
-## S4 method definitions.
-#############################################################
-
-## if formula suuplied
-#' @export splsda
-setMethod("splsda", signature("ANY", "ANY", "ANY"), function(X, Y, formula, ...){
-
-  # if(!"NULL" %in% class(tryCatch(X, error = function(e) e))){
-  #   .stop(.subclass = "args_conflict", message = "only one of'formula' and 'X' should be provided")
-  # }
-  # if(!"NULL" %in% class(tryCatch(Y, error = function(e) e))){
-  #   .stop(.subclass = "args_conflict", message = "only one of'formula' and 'Y' should be provided")
-  # }
-
-  .splsda(X,Y,...)
+## ----------- Methods ----------- 
+#### ANY ####
+#' @export
+#' @rdname splsda
+setMethod('splsda', 'ANY', function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) {
+  mget(names(formals()), sys.frame(sys.nframe())) ## just to evaluate
+  
+  ## legacy code
+  if ( class(try(data)) %in% c("data.frame", "matrix") )
+    .stop(message = "mixOmics arguments have changed.
+              Please carefully read the documentation and try to use named 
+              arguments such as splsda(X=mat, ...) as opposed to splsda(mat, ...).",
+          .subclass = "defunct")
+  
+  if ( !is_null(data)) { ## data must be NULL
+    .stop(message = "data should be a MultiAssayExperiment class, or NULL",
+          .subclass = "inv_signature")
+  }
+  if (!is_null(formula)) { ## formula must be NULL
+    .stop(message = "With numerical X and Y, formula should not be provided. 
+              See ?splsda",
+          .subclass = "inv_signature")
+  }
+  
+  mc <- match.call()
+  mc[-1L] <- lapply(mc[-1L], eval.parent)
+  mc$data <- mc$formula <- NULL 
+  mc[[1L]] <- quote(.splsda)
+  result <- eval(mc)
+  .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'splsda')
 })
-# ## if formula suuplied and class(X)!=MultiAssayExperiment
-# @export
-# @rdname splsda
-# setMethod("splsda", signature("ANY", "ANY", "formula"), function(X, formula, Y, ...){
-#   if(!"NULL" %in% class(tryCatch(Y, error = function(e) e))){
-#     .stop(.subclass = "args_conflict", message = "only one of'formula' and 'Y' should be provided")
-#   }
-#
-#   if(!"NULL" %in% class(tryCatch(X, error = function(e) e))){
-#     .stop(.subclass = "args_conflict", message = "only one of'formula' and 'X' should be provided")
-#   }
-#       ## formula to X and Y
-#       f.terms <- vapply(as.list(formula), as.character, "character")[-1]
-#       X <- f.terms[[1]]
-#       phenotype <- f.terms[[2]]
-#       ## call
-#       .splsda(X=get(X), Y=get(phenotype),...)
-#
-# })
-#
-# ## formula method
-# setMethod("splsda", signature("MultiAssayExperiment", "formula"), function(X, formula, ...) {
-#   ## formula to phenotype and assay
-#   f.terms <- vapply(as.list(formula), as.character, "character")[-1]
-#   assay <- f.terms[[2]]
-#   phenotype <- f.terms[[1]]
-#   if(length(phenotype)>1) stop("RHS of 'formula' should contain a single column of colData(X)")
-#   ## phenotype to factor
-#   ## check it exists in colData
-#   if(! phenotype %in% names(colData(X)))  stop("phenotype must be a column name from colData(X)")
-#   phenotype <- factor(colData(X)[[phenotype]])
-#   ## assay to matrix
-#   tdm <- function(x) data.matrix(t(x))
-#   ## call
-#   .splsda(tdm(experiments(X)[[assay]]), Y=phenotype,...)
-# })
-#
-# ## assay and phenotype assay
-# setMethod("splsda", signature("MultiAssayExperiment", "ANY", "ANY"), function(X, assay, phenotype, ...) {
-#   assay <- as.character(substitute(assay))
-#   phenotype <- as.character(substitute(phenotype))
-#   ## check it exists in colData
-#   if(! phenotype %in% names(colData(X)))  stop("phenotype must be a column name from colData(X)")
-#   if(! assay %in% names(X))  stop(" 'assay' must be an assay from ", as.character(substitute(X)))
-#   phenotype <- factor(colData(X)[[phenotype]])
-#   ## assay to matrix
-#   tdm <- function(x) data.matrix(t(x))
-#   ## call
-#   .splsda(tdm(experiments(X)[[assay]]), Y=phenotype,...)
-# })
+
+#### signature(data = 'MultiAssayExperiment', formula = "formula") ####
+## expect X and Y to be NULL
+#' @export
+#' @rdname splsda
+setMethod('splsda', signature(data = 'MultiAssayExperiment', formula = 'formula'), 
+          function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) {
+            mget(names(formals()), sys.frame(sys.nframe())) ## just to evaluate
+            ## X and Y NULL or missing
+            if ( !(is_null(X) && is_null(Y)) )
+              .stop(message = "Where 'data' and 'formula' are provided 'X' and 'Y' should be NULL.", 
+                    .subclass = "inv_signature")
+            mc <- match.call()
+            mc[-1L] <- lapply(mc[-1L], eval.parent)
+            .sformula_checker(mc) ## check formula validity
+            mc[c('Y', 'X')] <- as.character(formula[2:3])
+            mc <- .get_xy(mc = mc)
+            mc$data <- mc$formula <- NULL 
+            mc[[1L]] <- quote(.splsda)
+            result <- eval(mc)
+            .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'splsda')
+          })
+
+
+#### signature(data != 'MultiAssayExperiment', formula = "formula") ####
+## expect X and Y to be NULL
+#' @export
+#' @rdname splsda
+setMethod('splsda', signature(formula = 'formula'), 
+          function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) {
+            mget(names(formals()), sys.frame(sys.nframe())) ## just to evaluate
+            mc <- match.call()
+            mc[-1L] <- lapply(mc[-1L], eval.parent)
+            .sformula_checker(mc) ## check formula validity
+            mc$X <- eval.parent(as.list(formula)[[3]], n = 2)
+            mc$Y <- eval.parent(as.list(formula)[[2]], n = 2)
+            # mc <- .get_xy(mc = mc)
+            mc$data <- mc$formula <- NULL 
+            mc[[1L]] <- quote(.splsda)
+            result <- eval(mc)
+            .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'splsda')
+          })
+
+
+#### signature(data = 'MultiAssayExperiment', formula != "formula") ####
+## expect X and Y to be valid characters
+#' @export
+#' @rdname splsda
+setMethod('splsda', signature(data = 'MultiAssayExperiment'), 
+          function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) {
+            mget(names(formals()), sys.frame(sys.nframe())) ## just to evaluate
+            ## X and Y NULL or missing
+            if (!is_null(formula)) { ## formula must be NULL
+              .stop(message = "With numerical X and Y, formula should not be provided. See ?splsda", 
+                    .subclass = "inv_signature")
+            }
+            mc <- match.call()
+            mc[-1L] <- lapply(mc[-1L], eval.parent)
+            mc <- .get_xy(mc = mc)
+            mc$data <- mc$formula <- NULL 
+            mc[[1L]] <- quote(.splsda)
+            result <- eval(mc)
+            .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'splsda')
+          })
