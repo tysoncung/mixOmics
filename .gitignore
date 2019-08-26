@@ -42,3 +42,5 @@ gitignore
 !**/README.md
 Library
 
+## test plots
+**/Rplots.pdf
