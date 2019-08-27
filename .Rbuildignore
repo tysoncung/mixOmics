@@ -45,4 +45,4 @@ buildignore
 check.Renviron
 ^Library/
 ^\.Rprofile$
-
+gitignore
