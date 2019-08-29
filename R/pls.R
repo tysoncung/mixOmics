@@ -211,7 +211,7 @@ setMethod('pls', 'ANY', function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) {
     .call_return(result, match.call(), fun.name = 'pls')
 })
 
-#### signature(data = 'MultiAssayExperiment', formula != "formula") ####
+#### signature(data = 'MultiAssayExperiment') ####
 #' @export
 #' @rdname pls
 setMethod('pls', signature(data = 'MultiAssayExperiment'), 
@@ -228,7 +228,7 @@ setMethod('pls', signature(data = 'MultiAssayExperiment'),
               .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'pls')
           })
 
-#### signature(data = 'MatchedAssayExperiment', formula != "formula") ####
+#### signature(data = 'MatchedAssayExperiment') ####
 ## same as MultiAssayExperiment with different signature only
 #' @export
 #' @rdname pls
@@ -245,7 +245,7 @@ setMethod('pls', signature(data = 'MatchedAssayExperiment'),
               .call_return(result, mc$ret.call, mcr = match.call(), fun.name = 'pls')
           })
 
-#### signature(data != 'MultiAssayExperiment', formula = "formula") ####
+#### signature(formula = "formula", data NOT ANY EXPLICIT SIGNATURE) ####
 #' @export
 #' @rdname pls
 setMethod('pls', signature(formula = 'formula'), 
