@@ -4,24 +4,24 @@
 \name{pls}
 \alias{pls}
 \alias{pls,ANY,ANY,ANY,ANY-method}
-\alias{pls,MultiAssayExperiment,ANY,ANY,formula-method}
-\alias{pls,ANY,ANY,ANY,formula-method}
 \alias{pls,MultiAssayExperiment,ANY,ANY,ANY-method}
+\alias{pls,MatchedAssayExperiment,ANY,ANY,ANY-method}
+\alias{pls,ANY,ANY,ANY,formula-method}
 \title{Partial Least Squares (PLS) Regression}
 \usage{
 pls(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 
 \S4method{pls}{ANY,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL,
   formula = NULL, ..., ret.call = FALSE)
+  
+\S4method{pls}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL,
+  Y = NULL, formula = NULL, ...)
 
-\S4method{pls}{MultiAssayExperiment,ANY,ANY,formula}(data = NULL,
-  X = NULL, Y = NULL, formula = NULL, ..., ret.call = FALSE)
+\S4method{pls}{MatchedAssayExperiment,ANY,ANY,ANY}(data = NULL,
+  X = NULL, Y = NULL, formula = NULL, ...)
 
 \S4method{pls}{ANY,ANY,ANY,formula}(data = NULL, X = NULL, Y = NULL,
-  formula = NULL, ..., ret.call = FALSE)
-
-\S4method{pls}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL,
-  Y = NULL, formula = NULL, ..., ret.call = FALSE)
+  formula = NULL, ...)
 }
 \arguments{
 \item{data}{An object of class \code{MultiAssayExperiment} or similar.

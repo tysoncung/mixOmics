@@ -8,6 +8,25 @@
 mode = c("regression", "canonical", "invariant", "classic"), tol = 1e-06,
 max.iter = 100, near.zero.var = FALSE, logratio = c("none", "CLR"),
 multilevel = NULL, all.outputs = TRUE)
+\alias{plsda,ANY,ANY,ANY,ANY-method}
+\alias{plsda,MultiAssayExperiment,ANY,ANY,ANY-method}
+\alias{plsda,MatchedAssayExperiment,ANY,ANY,ANY-method}
+\alias{plsda,ANY,ANY,ANY,formula-method}
+\title{Partial Least Squares Discriminant Analysis (PLS-DA).}
+\usage{
+plsda(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{plsda}{ANY,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL,
+  formula = NULL, ...)
+
+\S4method{plsda}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL,
+  X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{plsda}{MatchedAssayExperiment,ANY,ANY,ANY}(data = NULL,
+  X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{plsda}{ANY,ANY,ANY,formula}(data = NULL, X = NULL,
+  Y = NULL, formula = NULL, ...)
 }
 \arguments{
 \item{X}{A numeric matrix (or data frame) which provides the data for the
