@@ -81,10 +81,10 @@ all.outputs = TRUE)
     
     # calculate weights for each dataset
     weights = get.weights(result$variates, indY = result$indY)
-    cl <- match.call()
-    ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval)
-    # choose the desired output from 'result'
+    ## get a list of arguments with evaluated values
+    cl = mget(names(formals()), sys.frame(sys.nframe()))
+    ## create a call object
+    cl <- as.call(c(quote(block.pls), cl))
     out=list(call = cl,
         X = result$A,
         indY = result$indY,

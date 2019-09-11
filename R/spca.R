@@ -266,10 +266,10 @@ function(X,
     
     rownames(mat.u) = ind.names
 
-    cl = match.call()
-	cl[[1]] = as.name('spca')
-	## evluate the call's expression arguments
-	cl[-1] <- lapply(cl[-1], eval)
+    ## get a list of arguments with evaluated values
+    cl = mget(names(formals()), sys.frame(sys.nframe()))
+    ## create a call object
+    cl <- as.call(c(quote(spca), cl))
     result = (list(call = cl, X = X,
 		   ncomp = ncomp,	
                    #sdev = sdev,  # KA: to add if biplot function (but to be fixed!)

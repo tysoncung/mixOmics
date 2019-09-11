@@ -65,10 +65,10 @@ all.outputs = TRUE)
     tol = tol, logratio = logratio,
     multilevel = multilevel, DA = FALSE, all.outputs= all.outputs)
     
-    # choose the desired output from 'result'
-    cl <- match.call()
-    ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval)
+    ## get a list of arguments with evaluated values
+    cl = mget(names(formals()), sys.frame(sys.nframe()))
+    ## create a call object
+    cl <- as.call(c(quote(spls), cl))
     
     out = list(
         call = cl,

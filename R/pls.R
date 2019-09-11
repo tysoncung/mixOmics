@@ -61,10 +61,10 @@ all.outputs = TRUE)
     result = internal_wrapper.mint(X = X, Y = Y,ncomp = ncomp, scale = scale, near.zero.var = near.zero.var, mode = mode,
         max.iter = max.iter, tol = tol, logratio = logratio, multilevel = multilevel, DA = FALSE, all.outputs=all.outputs)
 
-    # choose the desired output from 'result'
-    cl <- match.call()
-    ## evluate the call's expression arguments
-    cl[-1] <- lapply(cl[-1], eval)
+    ## get a list of arguments with evaluated values
+    cl = mget(names(formals()), sys.frame(sys.nframe()))
+    ## create a call object
+    cl <- as.call(c(quote(pls), cl))
     out = list(
         call = cl,
         X = result$A[-result$indY][[1]],
