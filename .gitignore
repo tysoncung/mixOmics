@@ -1,0 +1,35 @@
+## cache files
+**/*_cache
+
+## local run/save files
+**/*.pdf
+**/*.rds
+**/*.RData
+
+## files for project-specific installation of the package
+Library
+.Rprofile
+
+
+## log files
+**/*.log
+
+## intermediate md files
+**/*.md
+
+## github_document render of README.Rmd
+README.html
+
+## override ignores for these
+!README.md
+!CODE_OF_CONDUCT.md
+!data/*
+!vignettes/*
+
+## always ignore in all directories
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.DS_Store
