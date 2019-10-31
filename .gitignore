@@ -1,30 +1,38 @@
-.DS_Store
-.Rproj.user
-.Rproj.user
-.Ruserdata
-.Rhistory
-
-*.Rproj
-
-**/*_files
+## cache files
 **/*_cache
+
+## local run/save files
+**/*.pdf
 **/*.rds
 **/*.RData
 
+## files for project-specific installation of the package
+Library
+.Rprofile
 
-**/*.md
+
+## log files
 **/*.log
 
-**/*.html
+## intermediate md files
+**/*.md
 
+## github_document render of README.Rmd
+README.html
 
-## my notes
-notes.Rmd
+## override ignores for these
+!README.md
+!NEWS.md
+!CODE_OF_CONDUCT.md
+!data/*
+!vignettes/*
 
-## do not ever exclude:
-!**/README.md
-Library
+## always ignore in all directories
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.DS_Store
 
-## test plots
-**/Rplots.pdf
-gitignore
+inst/*.html

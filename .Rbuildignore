@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^examples$
+
 ^tests/internals
 buildignore
 
@@ -25,3 +26,18 @@ check.Renviron
 ^Library/
 ^\.Rprofile$
 gitignore
+
+^\.travis\.yml$
+^docs$
+README*
+
+^CODE_OF_CONDUCT\.md$
+^LICENSE\.md$
+
+^NEWS*$
+^MD5$
+^.gitignore$
+
+Library
+
+.github

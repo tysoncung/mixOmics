@@ -16,6 +16,7 @@
 plotIndiv(object, ...)
 }
 \arguments{
+##<<<<<<< HEAD
 \item{object}{object of class inherited from any \pkg{mixOmics}: \code{PLS,
 sPLS, PLS-DA, SPLS-DA, rCC, PCA, sPCA, IPCA, sIPCA, rGCCA, sGCCA, sGCCDA}}
 
@@ -85,6 +86,26 @@ plot is only be plotted if the argument \code{group} is provided. In the
 supervised objects \code{PLS-DA, SPLS-DA,sGCCDA} the star plot is plotted
 according to the outcome \code{Y}.}
 
+##=======
+\item{object}{object of class inherited from any \pkg{mixOmics}:  \code{PLS, sPLS, PLS-DA, SPLS-DA, rCC, PCA, sPCA, IPCA, sIPCA, rGCCA, sGCCA, sGCCDA}}
+\item{comp}{integer vector of length two (or three to 3d). The components that will be used on the horizontal
+and the vertical axis respectively to project the individuals.}
+\item{rep.space}{For objects of class \code{"pca", "plsda", "plsda"} default is \code{"X-variate"}.  For the objects of class \code{"pls", "rcc"} default is a panel plot representing each data subspace. For objects of class \code{"rgcca"} and \code{"sgcca"}, numerical value(s) indicating the block data set to represent needs to be specified.}
+
+\item{blocks}{integer value of name of a block to be plotted using the GCCA module. See examples.}
+\item{study}{Indicates which study-specific outputs to plot. A character vector containing some levels of \code{object$study}, "all.partial" to plot all studies or "global" is expected. Default to "global".}
+\item{ind.names}{either a character vector of names for the individuals to be plotted,
+or \code{FALSE} for no names. If \code{TRUE}, the row names of the first (or second)
+data matrix is used as names (see Details).}
+\item{group}{factor indicating the group membership for each sample, useful for ellipse plots. Coded as default for the supervised methods \code{PLS-DA, SPLS-DA,sGCCDA}, but needs to be input for the unsupervised methods \code{PCA, sPCA, IPCA, sIPCA, PLS, sPLS, rCC, rGCCA, sGCCA}}
+\item{col.per.group}{character (or symbol) color to be used when 'group' is defined. Vector of the same length than the number of groups.}
+\item{style}{argument to be set to either \code{'graphics'}, \code{'lattice'}, \code{'ggplot2'} or \code{'3d'} for a style of plotting. Default set to 'ggplot2'. See details. \code{3d} is not available for MINT objects.}
+\item{ellipse}{boolean indicating if ellipse plots should be plotted. In the non supervised objects \code{PCA, sPCA, IPCA, sIPCA, PLS, sPLS, rCC, rGCCA, sGCCA} ellipse plot is only be plotted if the argument \code{group} is provided. In the \code{PLS-DA, SPLS-DA,sGCCDA} supervised object, by default the ellipse will be plotted accoding to the outcome \code{Y}.}
+\item{ellipse.level}{Numerical value indicating the confidence level of ellipse being plotted when \code{ellipse =TRUE} (i.e. the size of the ellipse). The default is set to 0.95, for a 95\% region.}
+\item{centroid}{boolean indicating whether centroid points should be plotted. In the non supervised objects \code{PCA, sPCA, IPCA, sIPCA, PLS, sPLS, rCC, rGCCA, sGCCA} the centroid will  only be plotted if the argument \code{group} is provided. The centroid will be calculated based on the group categories. In the supervised objects \code{PLS-DA, SPLS-DA,sGCCDA} the centroid will be calculated according to the outcome \code{Y}.}
+\item{star}{boolean indicating whether a star plot should be plotted, with arrows starting from the centroid (see argument
+\code{centroid}, and ending for each sample belonging to each group or outcome. In the non supervised objects \code{PCA, sPCA, IPCA, sIPCA, PLS, sPLS, rCC, rGCCA, sGCCA} star plot is only be plotted if the argument \code{group} is provided. In the supervised objects \code{PLS-DA, SPLS-DA,sGCCDA} the star plot is plotted according to the outcome \code{Y}.}
+##>>>>>>> devel
 \item{title}{set of characters indicating the title plot.}
 
 \item{subtitle}{subtitle for each plot, only used when several \code{block}
@@ -207,7 +228,13 @@ X <- nutrimouse$lipid
 Y <- nutrimouse$gene
 nutri.res <- rcc(X, Y, ncomp = 3, lambda1 = 0.064, lambda2 = 0.008)
 
+##<<<<<<< HEAD
 # default, only in the X space
+##=======
+# default, panel plot for X and Y subspaces
+plotIndiv(nutri.res)
+
+##>>>>>>> devel
 
 
 # ellipse with respect to genotype in the XY space,

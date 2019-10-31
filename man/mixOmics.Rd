@@ -3,6 +3,16 @@
 \name{mixOmics}
 \alias{mixOmics}
 \title{PLS-derived methods: one function to rule them all!}
+##<<<<<<< HEAD
+##=======
+
+\description{\emph{This is the documentation for mixOmics function from mixOmics package. For package documentation refer to \code{help(package='mixOmics')}}
+
+
+This function performs one of the PLS derived methods included in the mixOmics package that is the most appropriate for your input data, one of (mint).(block).(s)pls(da) depending on your input data (single data, list of data, discrete outcome, \dots)
+}
+
+##>>>>>>> devel
 \usage{
 mixOmics(X, Y, indY, study, ncomp, keepX, keepY, design, tau = NULL,
   scheme, mode, scale, init, tol = 1e-06, max.iter = 100,

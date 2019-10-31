@@ -30,6 +30,7 @@ of components to keep to perform the reconstitution of the data using the
 NIPALS algorithm. If \code{NULL}, function sets \code{ncomp = min(nrow(X),
 ncol(X))}.}
 
+##<<<<<<< HEAD
 \item{center}{A logical value indicating whether the variables should be
 shifted to be zero centered. Alternately, a vector of length equal the
 number of columns of \code{X} can be supplied. The value is passed to
@@ -41,6 +42,9 @@ scaled to have unit variance before the analysis takes place. The default is
 scaling is advisable. Alternatively, a vector of length equal the number of
 columns of \code{X} can be supplied. The value is passed to
 \code{\link{scale}}.}
+##=======
+According to Filzmoser et al., a ILR log ratio transformation is more appropriate for PCA with compositional data. Both CLR and ILR are valid.
+##>>>>>>> devel
 
 \item{max.iter}{Integer, the maximum number of iterations in the NIPALS
 algorithm.}

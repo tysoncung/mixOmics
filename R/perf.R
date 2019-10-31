@@ -32,10 +32,6 @@
 # -------------------------
 
 
-
-
-
-
 #' Compute evaluation criteria for PLS, sPLS, PLS-DA, sPLS-DA, MINT and DIABLO
 #'
 #' Function to evaluate the performance of the fitted PLS, sparse PLS, PLS-DA,
@@ -436,8 +432,8 @@ progressBar = TRUE,
     #-- check entries --#
 
     #-- check spls mode
-    if (object$mode == 'canonical')
-    stop("object$mode should be 'regression', 'invariant' or 'classic'.", call. = FALSE)
+    if ( object$mode == 'canonical' )
+    	stop("object$mode should be 'regression', 'invariant' or 'classic'.", call. = FALSE)
 
     #-- validation
     choices = c("Mfold", "loo")
@@ -929,7 +925,7 @@ cpus,
 
     class.object=class(object)
     if (!isNULL(cpus))
-    clusterExport(cl, c("X","Y","is.na.A","misdata","scale","near.zero.var","class.object","test.keepX"),envir=environment())
+    clusterExport(cl, c("X","Y","is.na.A","misdata","scale","near.zero.var","class.object","keepX"),envir=environment())
 
     for (comp in 1 : ncomp)
     {

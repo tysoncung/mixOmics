@@ -590,8 +590,11 @@ plot_parameters){
         missing.group = FALSE #not user defined
     } else if (!isNULL(group)) {
         missing.group = FALSE
-        if (!is.factor(group))
-        group = as.factor(group)
+        if (!is.factor(group)) {
+          group[is.na(group)] <- "missing group (NA)" ## create a character so it remains in factor levels
+          group = as.factor(group)
+        }
+        
 
         object$ind.mat = unmap(group)
 

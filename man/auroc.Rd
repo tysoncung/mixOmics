@@ -27,6 +27,7 @@ auroc(object, ...)
   multilevel = NULL, plot = TRUE, roc.comp = 1,
   roc.study = "global", ...)
 
+##<<<<<<< HEAD
 \method{auroc}{mint.splsda}(object, newdata = object$X,
   outcome.test = as.factor(object$Y), study.test = object$study,
   multilevel = NULL, plot = TRUE, roc.comp = 1,
@@ -39,6 +40,25 @@ auroc(object, ...)
 \method{auroc}{mint.block.plsda}(object, newdata = object$X,
   study.test = object$study, outcome.test = as.factor(object$Y),
   multilevel = NULL, plot = TRUE, roc.block = 1, roc.comp = 1, ...)
+##=======
+\usage{
+\method{auroc}{mixo_plsda}(object, newdata = object$input.X, outcome.test = as.factor(object$Y),
+multilevel = NULL, plot = TRUE, roc.comp = 1, title=paste("ROC Curve Comp",roc.comp), ...)
+
+\method{auroc}{mixo_splsda}(object, newdata = object$input.X, outcome.test = as.factor(object$Y),
+multilevel = NULL, plot = TRUE, roc.comp = 1, title=paste("ROC Curve Comp",roc.comp), ...)
+
+\method{auroc}{mint.plsda}(object, newdata = object$X, outcome.test = as.factor(object$Y),
+study.test = object$study, multilevel = NULL,plot = TRUE, roc.comp = 1,
+roc.study = "global", title=NULL, ...)
+
+\method{auroc}{mint.splsda}(object, newdata = object$X, outcome.test = as.factor(object$Y),
+study.test = object$study, multilevel = NULL,plot = TRUE, roc.comp = 1,
+roc.study = "global", title=NULL, ...)
+
+\method{auroc}{sgccda}(object, newdata = object$X, outcome.test = as.factor(object$Y),
+multilevel = NULL,plot = TRUE, roc.block = 1, roc.comp = 1, title=NULL, ...)
+##>>>>>>> devel
 
 \method{auroc}{mint.block.splsda}(object, newdata = object$X,
   study.test = object$study, outcome.test = as.factor(object$Y),
@@ -46,10 +66,25 @@ auroc(object, ...)
 }
 \arguments{
 \item{object}{Object of class inherited from one of the following supervised
+##<<<<<<< HEAD
 analysis function: "plsda", "splsda", "mint.plsda", "mint.splsda",
 "block.splsda" or "wrapper.sgccda"}
 
 \item{...}{external optional arguments for plotting}
+##=======
+analysis function: "plsda", "splsda", "mint.plsda", "mint.splsda", "block.splsda" or "wrapper.sgccda"}
+\item{newdata}{numeric matrix of predictors, by default set to the training data set (see details).}
+\item{outcome.test}{Either a factor or a class vector for the discrete outcome, by default set to the outcome vector from the training set (see details). }
+\item{study.test}{For MINT objects, grouping factor indicating which samples of \code{newdata} are from the same study. Overlap with \code{object$study} are allowed.}
+\item{multilevel}{Sample information when a newdata matrix is input and when multilevel decomposition for repeated measurements is required. A numeric matrix or data frame indicating the repeated measures on each individual, i.e. the individuals ID. See examples in \code{splsda}.}
+\item{plot}{Whether the ROC curves should be plotted, by default set to TRUE (see details).}
+\item{roc.comp}{Specify the component (integer) for which the ROC will be plotted from the multivariate model, default to 1.}
+\item{roc.block}{Specify the block number (integer) or the name of the block (set of characters) for which the ROC will be plotted for a block.plsda or block.splsda object, default to 1.}
+\item{roc.study}{Specify the study for which the ROC will be plotted for a mint.plsda or mint.splsda object, default to "global".}
+\item{title}{Character, specifies the title of the plot.}
+\item{...}{external optional arguments for plotting - \code{line.col} for custom colors and \code{legend.title} for custom legend title}
+}
+##>>>>>>> devel
 
 \item{newdata}{numeric matrix of predictors, by default set to the training
 data set (see details).}
@@ -129,7 +164,7 @@ X <- breast.tumors$gene.exp
 Y <- breast.tumors$sample$treatment
 
 plsda.breast <- plsda(X, Y, ncomp = 2)
-auc.plsda.breast = auroc(plsda.breast, ncomp = 1)
+auc.plsda.breast = auroc(plsda.breast, roc.comp = 1)
 
 
   ## example with sPLSDA
@@ -138,12 +173,17 @@ auc.plsda.breast = auroc(plsda.breast, ncomp = 1)
   auroc(plsda.breast, plot = FALSE)
 
 
+##<<<<<<< HEAD
   ## example with sPLSDA with 4 classes
   # -----------------
   X <- as.matrix(liver.toxicity$gene)
   # Y will be transformed as a factor in the function,
   # but we set it as a factor to set up the colors.
   Y <- as.factor(liver.toxicity$treatment[, 4])
+##=======
+splsda.liver <- splsda(X, Y, ncomp = 2, keepX = c(20, 20))
+auc.splsda.liver = auroc(splsda.liver, roc.comp = 1)
+##>>>>>>> devel
 
   splsda.liver <- splsda(X, Y, ncomp = 2, keepX = c(20, 20))
   auc.splsda.liver = auroc(splsda.liver, ncomp = 1)
@@ -164,6 +204,7 @@ auc.plsda.breast = auroc(plsda.breast, ncomp = 1)
   auc.mint.spslda = auroc(res, plot = TRUE, roc.comp = 3)
 
 
+##<<<<<<< HEAD
   ## example with block.plsda
   # ------------------
   data(nutrimouse)
@@ -181,6 +222,16 @@ auc.plsda.breast = auroc(plsda.breast, ncomp = 1)
   block.splsda.nutri = block.splsda(X = data, Y = nutrimouse$diet, keepX = list.keepX)
   auc.block.splsda.nutri = auroc(block.splsda.nutri, block = 1)
 #' }
+##=======
+block.plsda.nutri = block.plsda(X = data, Y = nutrimouse$diet)
+auc.block.plsda.nutri = auroc(block.plsda.nutri, roc.block = 'lipid')
+
+## example with block.splsda
+# ---------------
+list.keepX = list(gene = rep(10, 2), lipid = rep(5,2))
+block.splsda.nutri = block.splsda(X = data, Y = nutrimouse$diet, keepX = list.keepX)
+auc.block.splsda.nutri = auroc(block.splsda.nutri, roc.block = 1)
+##>>>>>>> devel
 }
 \seealso{
 \code{\link{tune}}, \code{\link{perf}}, and http://www.mixOmics.org
