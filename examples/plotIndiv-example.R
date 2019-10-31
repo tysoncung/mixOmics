@@ -6,8 +6,8 @@ X <- nutrimouse$lipid
 Y <- nutrimouse$gene
 nutri.res <- rcc(X, Y, ncomp = 3, lambda1 = 0.064, lambda2 = 0.008)
 
-# default, only in the X space
-
+# default, panel plot for X and Y subspaces
+plotIndiv(nutri.res)
 
 # ellipse with respect to genotype in the XY space,
 # names also indicate genotype

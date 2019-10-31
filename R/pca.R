@@ -56,7 +56,9 @@
 #' @param tol A positive real, the tolerance used in the NIPALS algorithm.
 #' @param logratio One of ('none','CLR','ILR'). Specifies the log ratio
 #' transformation to deal with compositional values that may arise from
-#' specific normalisation in sequencing data. Default to 'none'
+#' specific normalisation in sequencing data. Default to 'none'. 
+#' According to Filzmoser et al., a ILR log ratio transformation is more appropriate for 
+#' PCA with compositional data. Both CLR and ILR are valid.
 #' @param ilr.offset When logratio is set to 'ILR', an offset must be input to
 #' avoid infinite value after the logratio transform, default to 0.001.
 #' @param V Matrix used in the logratio transformation id provided.

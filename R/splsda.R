@@ -4,27 +4,21 @@
 # The formatting of the input is checked in .mintWrapper
 # ========================================================================== #
 ## ----------- Description ----------- 
-#' Sparse Partial Least Squares Discriminant Analysis (sPLS-DA)
-#'
-#' Function to perform sparse Partial Least Squares to classify samples
+#' @title Sparse Partial Least Squares Discriminant Analysis (sPLS-DA)
+#' @description Function to perform sparse Partial Least Squares to classify samples
 #' (supervised analysis) and select variables.
-#'
 #' \code{splsda} function fits an sPLS model with \eqn{1, \ldots ,}\code{ncomp}
 #' components to the factor or class vector \code{Y}. The appropriate indicator
 #' (dummy) matrix is created. Logratio transform and multilevel analysis are
 #' performed sequentially as internal pre-processing step, through
 #' \code{\link{logratio.transfo}} and \code{\link{withinVariation}}
 #' respectively.
-#'
 #' Logratio can only be applied if the data do not contain any 0 value (for
 #' count data, we thus advise the normalise raw data with a 1 offset).
-#'
 #' More details about the PLS modes in \code{?pls}.
-#' 
 ## ----------- Parameters ----------- 
 #' @inheritParams plsda
 #' @inheritParams spls
-#'  
 ## ----------- Value -----------
 #' @return \code{splsda} returns an object of class \code{"splsda"}, 
 #' a list that contains the following components:
@@ -48,7 +42,6 @@
 #' dummy matrix Y).} \item{mat.c}{matrix of coefficients from the regression of
 #' X / residual matrices X on the X-variates, to be used internally by
 #' \code{predict}.} \item{defl.matrix}{residual matrices X for each dimension.}
-#' 
 ## ----------- Ref ----------- 
 #' @author Florian Rohart, Ignacio González, Kim-Anh Lê Cao, Al J Abadi.
 #' @seealso \code{\link{spls}}, \code{\link{summary}}, \code{\link{plotIndiv}},
@@ -70,12 +63,12 @@
 #' integration of repeated measures experiments from two assays. BMC
 #' bioinformatics 13(1), 325 (2012)
 #' @keywords regression multivariate
-#' 
 ## ----------- Examples ----------- 
 #' @example examples/splsda-example.R
 ## setting the document name here so internal would not force the wrong name
 #' @name splsda
 NULL
+
 ## ----------- Internal ----------- 
 .splsda = function(X=NULL,
                    Y=NULL,
@@ -144,6 +137,7 @@ NULL
   return(invisible(result))
   
 }
+
 ## ----------- Generic ----------- 
 #' @export
 #' @rdname splsda

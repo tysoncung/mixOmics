@@ -4,24 +4,20 @@
 # The formatting of the input is checked in .mintWrapper
 # ========================================================================== #
 ## ----------- Description ----------- 
-#' Partial Least Squares Discriminant Analysis (PLS-DA).
-#'
-#' Function to perform standard Partial Least Squares regression to classify
-#' samples.
-#'
-#' \code{plsda} function fit PLS models with \eqn{1,...,}\code{ncomp}
+#' @title Partial Least Squares Discriminant Analysis (PLS-DA).
+
+#' @description Function to perform standard Partial Least Squares regression to classify
+#' samples. 
+#' \code{plsda} function fits PLS models with \eqn{1,...,}\code{ncomp}
 #' components to the factor or class vector \code{Y}. The appropriate indicator
 #' matrix is created.
-#'
 #' logratio transform and multilevel analysis are performed sequentially as
 #' internal pre-processing step, through \code{\link{logratio.transfo}} and
 #' \code{\link{withinVariation}} respectively.
-#'
 #' Logratio can only be applied if the data do not contain any 0 value (for
 #' count data, we thus advise the normalise raw data with a 1 offset).
-#'
 #' More details about the PLS modes in \code{?pls}.
-#' 
+
 ## ----------- Parameters ----------- 
 #' @inheritParams pls
 #' @param Y a factor or a class vector for the discrete outcome.
@@ -29,11 +25,10 @@
 #' repeated measurements. A numeric matrix or data frame indicating the
 #' repeated measures on each individual, i.e. the individuals ID. See examples
 #' in \code{?splsda}.
-#'  
+
 ## ----------- Value -----------
 #' @return \code{plsda} returns an object of class \code{"plsda"}, a list that
 #' contains the following components:
-#'
 #' \item{X}{the centered and standardized original predictor matrix.}
 #' \item{Y}{the centered and standardized indicator response vector or matrix.}
 #' \item{ind.mat}{the indicator matrix.} \item{ncomp}{the number of components
@@ -51,9 +46,9 @@
 #' matrix Y).} \item{mat.c}{matrix of coefficients from the regression of X /
 #' residual matrices X on the X-variates, to be used internally by
 #' \code{predict}.} \item{defl.matrix}{residual matrices X for each dimension.}
-#' 
+
 ## ----------- Ref ----------- 
-#' @author Ignacio González, Kim-Anh Lê Cao, Al J Abadi.
+#' @author Ignacio González, Kim-Anh Lê Cao, Al J Abadi
 #' @seealso \code{\link{splsda}}, \code{\link{summary}},
 #' \code{\link{plotIndiv}}, \code{\link{plotVar}}, \code{\link{predict}},
 #' \code{\link{perf}}, \code{\link{mint.block.plsda}},
@@ -77,12 +72,13 @@
 #' of repeated measures experiments from two assays. BMC bioinformatics 13(1),
 #' 325 (2012)
 #' @keywords regression multivariate
-#' 
+
 ## ----------- Examples ----------- 
 #' @example examples/plsda-example.R
 ## setting the document name here so internal would not force the wrong name
 #' @name plsda
 NULL
+
 ## ----------- Internal ----------- 
 .plsda = function(X=NULL,
                   Y=NULL,

@@ -68,18 +68,14 @@ X / residual matrices X on the X-variates, to be used internally by
 \description{
 Function to perform sparse Partial Least Squares to classify samples
 (supervised analysis) and select variables.
-}
-\details{
 \code{splsda} function fits an sPLS model with \eqn{1, \ldots ,}\code{ncomp}
 components to the factor or class vector \code{Y}. The appropriate indicator
 (dummy) matrix is created. Logratio transform and multilevel analysis are
 performed sequentially as internal pre-processing step, through
 \code{\link{logratio.transfo}} and \code{\link{withinVariation}}
 respectively.
-
 Logratio can only be applied if the data do not contain any 0 value (for
 count data, we thus advise the normalise raw data with a 1 offset).
-
 More details about the PLS modes in \code{?pls}.
 }
 \examples{
@@ -171,7 +167,7 @@ Sparse PLS Discriminant Analysis: biologically relevant feature selection
 and graphical displays for multiclass problems. \emph{BMC Bioinformatics}
 \bold{12}:253. On log ratio transformations: Filzmoser, P., Hron, K.,
 Reimann, C.: Principal component analysis for compositional data with
-outliers. Environmetrics 20(6), 621-632 (2009) Lê Cao K.-A., Costello ME,
+outliers. Environmetrics 20(6), 621-632 (2009) Lê Cao K.-A., Costello MdE,
 Lakis VA, Bartolo, F,Chua XY, Brazeilles R, Rondeau P. MixMC: Multivariate
 insights into Microbial Communities. PLoS ONE, 11(8): e0160169 (2016). On
 multilevel decomposition: Westerhuis, J.A., van Velzen, E.J., Hoefsloot,

@@ -85,8 +85,6 @@ selection on \code{Y} is performed by specifying the input parameter
 directly in \code{keepX} (no \code{keepY} is needed).
 }
 \examples{
-library(mixOmicsData)
-data("breast.TCGA")
 # Example with multi omics TCGA study
 # -----------------------------
 # this is the X data as a list of mRNA and miRNA; the Y data set is a single data set of proteins
@@ -110,11 +108,11 @@ plotIndiv(TCGA.block.spls, group =  breast.TCGA$data.train$subtype, ind.names = 
 # illustrates coefficient weights in each block
 plotLoadings(TCGA.block.spls, ncomp = 1)
 plotVar(TCGA.block.spls, style = 'graphics', legend = TRUE)
-\dontrun{
 network(TCGA.block.spls)
 
 # Example with MultiAssayExperiments
 # -----------------------------------
+library(mixOmicsData)
 data("breast.TCGA.mae")
 
 TCGA.block.spls.mae <- block.spls(data = breast.TCGA.mae, keepX = list.keepX, keepY = list.keepY,
@@ -122,7 +120,6 @@ TCGA.block.spls.mae <- block.spls(data = breast.TCGA.mae, keepX = list.keepX, ke
                                 design = design)
 
 ## TODO add more examples
-
 }
 \references{
 Tenenhaus, M. (1998). \emph{La regression PLS: theorie et

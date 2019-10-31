@@ -4,7 +4,7 @@
 \alias{cim}
 \title{Clustered Image Maps (CIMs) ("heat maps")}
 \usage{
-cim(mat, color = NULL, row.names = TRUE, col.names = TRUE,
+cim(mat = NULL, color = NULL, row.names = TRUE, col.names = TRUE,
   row.sideColors = NULL, col.sideColors = NULL, row.cex = NULL,
   col.cex = NULL, threshold = 0, cluster = "both",
   dist.method = c("euclidean", "euclidean"),
