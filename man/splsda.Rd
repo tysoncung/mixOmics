@@ -2,14 +2,26 @@
 % Please edit documentation in R/splsda.R
 \name{splsda}
 \alias{splsda}
+\alias{splsda,ANY,ANY,ANY,ANY-method}
+\alias{splsda,MultiAssayExperiment,ANY,ANY,ANY-method}
+\alias{splsda,MatchedAssayExperiment,ANY,ANY,ANY-method}
+\alias{splsda,ANY,ANY,ANY,formula-method}
 \title{Sparse Partial Least Squares Discriminant Analysis (sPLS-DA)}
 \usage{
-\S4method{splsda}{ANY}(X, Y, ncomp = 2,
-mode = c("regression", "canonical", "invariant", "classic"),
-keepX, scale = TRUE, tol = 1e-06, max.iter = 100, near.zero.var = FALSE,
-logratio = c("none", "CLR"),  multilevel = NULL, all.outputs = TRUE)
+splsda(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{splsda}{ANY,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{splsda}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{splsda}{MatchedAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
+
+\S4method{splsda}{ANY,ANY,ANY,formula}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 }
 \arguments{
+\item{data}{An object of class \code{MultiAssayExperiment} or similar.
+See Details.}
+
 \item{X}{A numeric matrix (or data frame) which provides the data for the
 principal components analysis. It can contain missing values.
 Alternatively, name of an assay from \code{data}.}
@@ -22,33 +34,11 @@ Alternatively, name of an assay from \code{data}.}
  \code{X} and \code{Y} must be \code{NULL} when \code{formula} is used. 
  See Details.}
 
-\item{mode}{Character string. What type of algorithm to use, (partially)
-matching one of \code{"regression"}, \code{"canonical"}, \code{"invariant"}
-or \code{"classic"}. See Details.}
-
-\item{keepX}{Numeric vector of length \code{ncomp}, the number of variables
-to keep in \eqn{X}-loadings. By default all variables are kept in the model.}
-
-\item{near.zero.var}{Boolean, see the internal \code{\link{nearZeroVar}}
-function (should be set to TRUE in particular for data with many zero
-values). Setting this argument to FALSE (when appropriate) will speed up the
-computations. Default value is FALSE}
-
-\item{logratio}{One of ('none','CLR'). Default to 'none'}
-
-\item{multilevel}{sample information for multilevel decomposition for
-repeated measurements. A numeric matrix or data frame indicating the
-repeated measures on each individual, i.e. the individuals ID. See examples
-in \code{?splsda}.}
-
-\item{all.outputs}{Boolean. Computation can be faster when some specific
-(and non-essential) outputs are not calculated. Default = \code{TRUE}.
- see examples.}
-
 \item{...}{Aguments passed to the generic.}
 }
 \value{
-\code{splsda} returns an object of class \code{"splsda"}, a list that contains the following components:
+\code{splsda} returns an object of class \code{"splsda"}, 
+a list that contains the following components:
 \item{X}{the centered and standardized original predictor matrix.}
 \item{Y}{the centered and standardized indicator response vector or matrix.}
 \item{ind.mat}{the indicator matrix.} \item{ncomp}{the number of components
@@ -71,8 +61,8 @@ X / residual matrices X on the X-variates, to be used internally by
 \code{predict}.} \item{defl.matrix}{residual matrices X for each dimension.}
 }
 \description{
-Function to perform sparse Partial Least Squares to classify samples
-(supervised analysis) and select variables.
+Function to perform sparse Partial Least Squares to classify 
+samples (supervised analysis) and select variables.
 }
 \details{
 \code{splsda} function fits an sPLS model with \eqn{1, \ldots ,}\code{ncomp}
@@ -80,16 +70,13 @@ components to the factor or class vector \code{Y}. The appropriate indicator
 (dummy) matrix is created. Logratio transform and multilevel analysis are
 performed sequentially as internal pre-processing step, through
 \code{\link{logratio.transfo}} and \code{\link{withinVariation}}
-respectively.
-
-Logratio can only be applied if the data do not contain any 0 value (for
-count data, we thus advise the normalise raw data with a 1 offset).
-
+respectively. Logratio can only be applied if the data do not contain any 
+0 value (for count data, we thus advise the normalise raw data with a 1 offset). 
 More details about the PLS modes in \code{?pls}.
 }
 \examples{
-
 ## First example
+data(breast.tumors)
 X <- breast.tumors$gene.exp
 # Y will be transformed as a factor in the function,
 # but we set it as a factor to set up the colors.
@@ -101,73 +88,75 @@ res <- splsda(X, Y, ncomp = 2, keepX = c(25, 25))
 # individual names appear
 plotIndiv(res, ind.names = Y, legend = TRUE, ellipse =TRUE)
 
-\dontrun{
-## Second example: one-factor analysis with sPLS-DA, selecting a subset of variables
-# as in the paper Liquet et al.
-#--------------------------------------------------------------
-X <- vac18$genes
-Y <- vac18$stimulation
-# sample indicates the repeated measurements
-design <- data.frame(sample = vac18$sample)
-Y = data.frame(stimul = vac18$stimulation)
-
-# multilevel sPLS-DA model
-res.1level <- splsda(X, Y = Y, ncomp = 3, multilevel = design,
-keepX = c(30, 137, 123))
-
-# set up colors for plotIndiv
-col.stim <- c("darkblue", "purple", "green4","red3")
-plotIndiv(res.1level, ind.names = Y, col.per.group = col.stim)
-
-## Third example: two-factor analysis with sPLS-DA, selecting a subset of variables
-# as in the paper Liquet et al.
-#--------------------------------------------------------------
-
-X <- vac18.simulated$genes
-design <- data.frame(sample = vac18.simulated$sample)
-Y = data.frame( stimu = vac18.simulated$stimulation,
-time = vac18.simulated$time)
-
-res.2level <- splsda(X, Y = Y, ncomp = 2, multilevel = design,
-keepX = c(200, 200))
-
-plotIndiv(res.2level, group = Y$stimu, ind.names = vac18.simulated$time,
-legend = TRUE, style = 'lattice')
-
-
-
-## Fourth example: with more than two classes
-# ------------------------------------------------
-
-X <- as.matrix(liver.toxicity$gene)
-# Y will be transformed as a factor in the function,
-# but we set it as a factor to set up the colors.
-Y <- as.factor(liver.toxicity$treatment[, 4])
-
-splsda.liver <- splsda(X, Y, ncomp = 2, keepX = c(20, 20))
-
-# individual name is set to the treatment
-plotIndiv(splsda.liver, ind.names = Y, ellipse = TRUE, legend = TRUE)
-
-
-## Fifth example: 16S data with multilevel decomposion and log ratio transformation
-# ------------------------------------------------
-
-splsda.16S = splsda(
-X = diverse.16S$data.TSS,  # TSS normalised data
-Y =  diverse.16S$bodysite,
-multilevel = diverse.16S$sample, # multilevel decomposition
-ncomp = 2,
-keepX =  c(10, 150),
-logratio= 'CLR')  # CLR log ratio transformation
-
-
-plotIndiv(splsda.16S, ind.names = FALSE, pch = 16, ellipse = TRUE, legend = TRUE)
-#OTUs selected at the family level
-diverse.16S$taxonomy[selectVar(splsda.16S, comp = 1)$name,'Family']
-
-}
-
+#' \dontrun{
+    ## Second example: one-factor analysis with sPLS-DA, selecting a subset of variables
+    # as in the paper Liquet et al.
+    #--------------------------------------------------------------
+    data(vac18)
+    X <- vac18$genes
+    Y <- vac18$stimulation
+    # sample indicates the repeated measurements
+    design <- data.frame(sample = vac18$sample)
+    Y = data.frame(stimul = vac18$stimulation)
+    
+    # multilevel sPLS-DA model
+    res.1level <- splsda(X, Y = Y, ncomp = 3, multilevel = design,
+                         keepX = c(30, 137, 123))
+    
+    # set up colors for plotIndiv
+    col.stim <- c("darkblue", "purple", "green4","red3")
+    plotIndiv(res.1level, ind.names = Y, col.per.group = col.stim)
+    
+    ## Third example: two-factor analysis with sPLS-DA, selecting a subset of variables
+    # as in the paper Liquet et al.
+    #--------------------------------------------------------------
+    
+    data(vac18.simulated) # simulated data
+    
+    X <- vac18.simulated$genes
+    design <- data.frame(sample = vac18.simulated$sample)
+    Y = data.frame( stimu = vac18.simulated$stimulation,
+                    time = vac18.simulated$time)
+    
+    res.2level <- splsda(X, Y = Y, ncomp = 2, multilevel = design,
+                         keepX = c(200, 200))
+    
+    plotIndiv(res.2level, group = Y$stimu, ind.names = vac18.simulated$time,
+              legend = TRUE, style = 'lattice')
+    
+    
+    
+    ## Fourth example: with more than two classes
+    # ------------------------------------------------
+    
+    data(liver.toxicity)
+    X <- as.matrix(liver.toxicity$gene)
+    # Y will be transformed as a factor in the function,
+    # but we set it as a factor to set up the colors.
+    Y <- as.factor(liver.toxicity$treatment[, 4])
+    
+    splsda.liver <- splsda(X, Y, ncomp = 2, keepX = c(20, 20))
+    
+    # individual name is set to the treatment
+    plotIndiv(splsda.liver, ind.names = Y, ellipse = TRUE, legend = TRUE)
+    
+    
+    ## Fifth example: 16S data with multilevel decomposion and log ratio transformation
+    # ------------------------------------------------
+    
+    splsda.16S = splsda(
+        X = diverse.16S$data.TSS,  # TSS normalised data
+        Y =  diverse.16S$bodysite,
+        multilevel = diverse.16S$sample, # multilevel decomposition
+        ncomp = 2,
+        keepX =  c(10, 150),
+        logratio= 'CLR')  # CLR log ratio transformation
+    
+    
+    plotIndiv(splsda.16S, ind.names = FALSE, pch = 16, ellipse = TRUE, legend = TRUE)
+    #OTUs selected at the family level
+    diverse.16S$taxonomy[selectVar(splsda.16S, comp = 1)$name,'Family']
+    #' }
 }
 \references{
 On sPLS-DA: Lê Cao, K.-A., Boitard, S. and Besse, P. (2011).
@@ -192,7 +181,7 @@ bioinformatics 13(1), 325 (2012)
 \code{\link{block.splsda}} and http://www.mixOmics.org for more details.
 }
 \author{
-Florian Rohart, Ignacio González, Kim-Anh Lê Cao.
+Florian Rohart, Ignacio González, Kim-Anh Lê Cao, Al J Abadi.
 }
 \keyword{multivariate}
 \keyword{regression}

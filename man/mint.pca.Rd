@@ -4,8 +4,7 @@
 \alias{mint.pca}
 \title{P-integration with Principal Component Analysis}
 \usage{
-mint.pca(X, ncomp = 2, study, scale = TRUE, tol = 1e-06,
-  max.iter = 100)
+mint.pca(X, ncomp = 2, study, scale = TRUE, tol = 1e-06, max.iter = 100)
 }
 \arguments{
 \item{X}{numeric matrix of predictors combining multiple independent studies

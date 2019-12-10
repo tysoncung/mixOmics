@@ -8,14 +8,32 @@
 \alias{network.spls}
 \title{Relevance Network for (r)CCA and (s)PLS regression}
 \usage{
-network(mat, comp = NULL, blocks = c(1, 2), cutoff = NULL,
-  row.names = TRUE, col.names = TRUE, block.var.names = TRUE,
-  color.node = NULL, shape.node = NULL, cex.node.name = 1,
-  color.edge = color.GreenRed(100), lty.edge = "solid", lwd.edge = 1,
-  show.edge.labels = FALSE, cex.edge.label = 1,
-  show.color.key = TRUE, symkey = TRUE, keysize = c(1, 1),
-  keysize.label = 1, breaks, interactive = FALSE, layout.fun = NULL,
-  save = NULL, name.save = NULL)
+network(
+  mat,
+  comp = NULL,
+  blocks = c(1, 2),
+  cutoff = NULL,
+  row.names = TRUE,
+  col.names = TRUE,
+  block.var.names = TRUE,
+  color.node = NULL,
+  shape.node = NULL,
+  cex.node.name = 1,
+  color.edge = color.GreenRed(100),
+  lty.edge = "solid",
+  lwd.edge = 1,
+  show.edge.labels = FALSE,
+  cex.edge.label = 1,
+  show.color.key = TRUE,
+  symkey = TRUE,
+  keysize = c(1, 1),
+  keysize.label = 1,
+  breaks,
+  interactive = FALSE,
+  layout.fun = NULL,
+  save = NULL,
+  name.save = NULL
+)
 }
 \arguments{
 \item{mat}{numeric matrix of values to be represented.}

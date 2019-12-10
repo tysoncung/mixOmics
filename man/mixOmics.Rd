@@ -4,9 +4,24 @@
 \alias{mixOmics}
 \title{PLS-derived methods: one function to rule them all!}
 \usage{
-mixOmics(X, Y, indY, study, ncomp, keepX, keepY, design, tau = NULL,
-  scheme, mode, scale, init, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE)
+mixOmics(
+  X,
+  Y,
+  indY,
+  study,
+  ncomp,
+  keepX,
+  keepY,
+  design,
+  tau = NULL,
+  scheme,
+  mode,
+  scale,
+  init,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE
+)
 }
 \arguments{
 \item{X}{Input data. Either a matrix or a list of data sets (called

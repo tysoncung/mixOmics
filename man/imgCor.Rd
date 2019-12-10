@@ -4,10 +4,26 @@
 \alias{imgCor}
 \title{Image Maps of Correlation Matrices between two Data Sets}
 \usage{
-imgCor(X, Y, type = "combine", X.var.names = TRUE,
-  Y.var.names = TRUE, sideColors = TRUE, interactive.dev = TRUE,
-  title = TRUE, color, row.cex, col.cex, symkey, keysize, xlab, ylab,
-  margins, lhei, lwid)
+imgCor(
+  X,
+  Y,
+  type = "combine",
+  X.var.names = TRUE,
+  Y.var.names = TRUE,
+  sideColors = TRUE,
+  interactive.dev = TRUE,
+  title = TRUE,
+  color,
+  row.cex,
+  col.cex,
+  symkey,
+  keysize,
+  xlab,
+  ylab,
+  margins,
+  lhei,
+  lwid
+)
 }
 \arguments{
 \item{X}{numeric matrix or data frame \eqn{(n} x \eqn{p)}, the observations

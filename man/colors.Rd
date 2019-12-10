@@ -17,9 +17,6 @@ palette.}
 
 \item{alpha}{a numeric value between 0 and 1 for alpha channel (opacity).}
 
-\item{num.vector}{for \code{color.mixo} an integer vector specifying which
-colors to use in the mixOmics palette (there are only 10 colors available.}
-
 \item{num.vector}{A numeric vector of mixOmics colors to return}
 }
 \value{

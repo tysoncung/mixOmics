@@ -4,8 +4,14 @@
 \alias{background.predict}
 \title{Calculate prediction areas}
 \usage{
-background.predict(object, comp.predicted = 1, dist = "max.dist",
-  xlim = NULL, ylim = NULL, resolution = 100)
+background.predict(
+  object,
+  comp.predicted = 1,
+  dist = "max.dist",
+  xlim = NULL,
+  ylim = NULL,
+  resolution = 100
+)
 }
 \arguments{
 \item{object}{A list of data sets (called 'blocks') measured on the same

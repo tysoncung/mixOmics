@@ -5,10 +5,20 @@
 \title{mixOmics wrapper for Regularised Generalised Canonical Correlation Analysis
 (rgcca)}
 \usage{
-wrapper.rgcca(X, design = 1 - diag(length(X)), tau = rep(1, length(X)),
-  ncomp = 1, keepX, scheme = "horst", scale = TRUE,
-  init = "svd.single", tol = .Machine$double.eps, max.iter = 1000,
-  near.zero.var = FALSE, all.outputs = TRUE)
+wrapper.rgcca(
+  X,
+  design = 1 - diag(length(X)),
+  tau = rep(1, length(X)),
+  ncomp = 1,
+  keepX,
+  scheme = "horst",
+  scale = TRUE,
+  init = "svd.single",
+  tol = .Machine$double.eps,
+  max.iter = 1000,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{a list of data sets (called 'blocks') matching on the same samples.

@@ -5,9 +5,18 @@
 \title{P-integration with Projection to Latent Structures models (PLS) with
 Discriminant Analysis}
 \usage{
-mint.plsda(X, Y, ncomp = 2, mode = c("regression", "canonical",
-  "invariant", "classic"), study, scale = TRUE, tol = 1e-06,
-  max.iter = 100, near.zero.var = FALSE, all.outputs = TRUE)
+mint.plsda(
+  X,
+  Y,
+  ncomp = 2,
+  mode = c("regression", "canonical", "invariant", "classic"),
+  study,
+  scale = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors combining multiple independent studies

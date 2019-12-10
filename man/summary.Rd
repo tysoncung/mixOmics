@@ -8,14 +8,29 @@
 \alias{summary.pca}
 \title{Summary Methods for CCA and PLS objects}
 \usage{
-\method{summary}{mixo_pls}(object, what = c("all", "communalities",
-  "redundancy", "VIP"), digits = 4, keep.var = FALSE, ...)
+\method{summary}{mixo_pls}(
+  object,
+  what = c("all", "communalities", "redundancy", "VIP"),
+  digits = 4,
+  keep.var = FALSE,
+  ...
+)
 
-\method{summary}{mixo_spls}(object, what = c("all", "communalities",
-  "redundancy", "VIP"), digits = 4, keep.var = FALSE, ...)
+\method{summary}{mixo_spls}(
+  object,
+  what = c("all", "communalities", "redundancy", "VIP"),
+  digits = 4,
+  keep.var = FALSE,
+  ...
+)
 
-\method{summary}{rcc}(object, what = c("all", "communalities",
-  "redundancy"), cutoff = NULL, digits = 4, ...)
+\method{summary}{rcc}(
+  object,
+  what = c("all", "communalities", "redundancy"),
+  cutoff = NULL,
+  digits = 4,
+  ...
+)
 
 \method{summary}{pca}(object, ...)
 }

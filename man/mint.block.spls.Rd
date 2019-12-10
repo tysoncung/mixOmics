@@ -4,9 +4,24 @@
 \alias{mint.block.spls}
 \title{NP-integration for integration with variable selection}
 \usage{
-mint.block.spls(X, Y, indY, study, ncomp = 2, keepX, keepY, design,
-  scheme, mode, scale = TRUE, init, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE, all.outputs = TRUE)
+mint.block.spls(
+  X,
+  Y,
+  indY,
+  study,
+  ncomp = 2,
+  keepX,
+  keepY,
+  design,
+  scheme,
+  mode,
+  scale = TRUE,
+  init,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{A list of data sets (called 'blocks') measured on the same samples.

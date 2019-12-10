@@ -4,11 +4,25 @@
 \alias{tune.spls}
 \title{Tuning functions for sPLS method}
 \usage{
-tune.spls(X, Y, ncomp = 1, test.keepX = c(5, 10, 15), already.tested.X,
-  validation = "Mfold", folds = 10, measure = "MSE", scale = TRUE,
-  progressBar = TRUE, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE, nrepeat = 1, multilevel = NULL,
-  light.output = TRUE, cpus)
+tune.spls(
+  X,
+  Y,
+  ncomp = 1,
+  test.keepX = c(5, 10, 15),
+  already.tested.X,
+  validation = "Mfold",
+  folds = 10,
+  measure = "MSE",
+  scale = TRUE,
+  progressBar = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  nrepeat = 1,
+  multilevel = NULL,
+  light.output = TRUE,
+  cpus
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors. \code{NA}s are allowed.}

@@ -2,12 +2,6 @@
 % Please edit documentation in R/plsda.R
 \name{plsda}
 \alias{plsda}
-\title{Partial Least Squares Discriminant Analysis (PLS-DA).}
-\usage{
-\S4method{plsda}{ANY}(X, Y, ncomp = 2, scale = TRUE,
-mode = c("regression", "canonical", "invariant", "classic"), tol = 1e-06,
-max.iter = 100, near.zero.var = FALSE, logratio = c("none", "CLR"),
-multilevel = NULL, all.outputs = TRUE)
 \alias{plsda,ANY,ANY,ANY,ANY-method}
 \alias{plsda,MultiAssayExperiment,ANY,ANY,ANY-method}
 \alias{plsda,MatchedAssayExperiment,ANY,ANY,ANY-method}
@@ -16,19 +10,18 @@ multilevel = NULL, all.outputs = TRUE)
 \usage{
 plsda(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 
-\S4method{plsda}{ANY,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL,
-  formula = NULL, ...)
+\S4method{plsda}{ANY,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 
-\S4method{plsda}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL,
-  X = NULL, Y = NULL, formula = NULL, ...)
+\S4method{plsda}{MultiAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 
-\S4method{plsda}{MatchedAssayExperiment,ANY,ANY,ANY}(data = NULL,
-  X = NULL, Y = NULL, formula = NULL, ...)
+\S4method{plsda}{MatchedAssayExperiment,ANY,ANY,ANY}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 
-\S4method{plsda}{ANY,ANY,ANY,formula}(data = NULL, X = NULL,
-  Y = NULL, formula = NULL, ...)
+\S4method{plsda}{ANY,ANY,ANY,formula}(data = NULL, X = NULL, Y = NULL, formula = NULL, ...)
 }
 \arguments{
+\item{data}{An object of class \code{MultiAssayExperiment} or similar.
+See Details.}
+
 \item{X}{A numeric matrix (or data frame) which provides the data for the
 principal components analysis. It can contain missing values.
 Alternatively, name of an assay from \code{data}.}
@@ -40,17 +33,6 @@ Alternatively, name of an assay from \code{data}.}
  from \code{data}. 
  \code{X} and \code{Y} must be \code{NULL} when \code{formula} is used. 
  See Details.}
-
-\item{mode}{Character string. What type of algorithm to use, (partially)
-matching one of \code{"regression"}, \code{"canonical"}, \code{"invariant"}
-or \code{"classic"}. See Details.}
-
-\item{near.zero.var}{Boolean, see the internal \code{\link{nearZeroVar}}
-function (should be set to TRUE in particular for data with many zero
-values). Setting this argument to FALSE (when appropriate) will speed up the
-computations. Default value is FALSE}
-
-\item{logratio}{One of ('none','CLR'). Default to 'none'}
 
 \item{...}{Aguments passed to the generic.}
 
@@ -120,21 +102,13 @@ identical(plsda.res1[-1], plsda.res2[-1])
 #> TRUE
 ## ---------------- MultiAssayExperiment and assay names as X and Y
 ## 'data' argument should be explicitly mentioned for correct method dispatch
-plsda.res3 <- plsda(X='exercise', Y='physiological', data = linnerud.mae)
-identical(plsda.res1[-1], plsda.res3[-1])
-#> TRUE
+plsda.res3 <- plsda(X='gene', Y='Dose.Group', data = liver.toxicity.mae)
+plsda.res3
 
 ## ---------------- MultiAssayExperiment and formula with assay names
-plsda.res4 <- plsda(formula = physiological ~ exercise, data = linnerud.mae, mode = "classic",)
-identical(plsda.res1[-1], plsda.res4[-1])
+plsda.res4 <- plsda(formula = Dose.Group ~ gene, data = liver.toxicity.mae)
+identical(plsda.res3[-1], plsda.res4[-1])
 #> TRUE
-
-## ---------------- MultiAssayExperiment; X=assay and Y=colData
-toxicity.plsda1 <- plsda(data = liver.toxicity.mae,  formula = Dose.Group~gene, ncomp = 3)
-toxicity.plsda2 <- plsda(data = liver.toxicity.mae,  Y='Dose.Group', X='gene', ncomp = 3)
-identical(toxicity.plsda1[-1], toxicity.plsda2[-1])
-#> TRUE
-
 #' }
 }
 \references{
@@ -164,7 +138,7 @@ of repeated measures experiments from two assays. BMC bioinformatics 13(1),
 \code{\link{block.plsda}} and http://mixOmics.org for more details.
 }
 \author{
-Ignacio González, Kim-Anh Lê Cao.
+Ignacio González, Kim-Anh Lê Cao, Al J Abadi.
 }
 \keyword{multivariate}
 \keyword{regression}

@@ -4,10 +4,20 @@
 \alias{mint.spls}
 \title{P-integration with variable selection}
 \usage{
-mint.spls(X, Y, ncomp = 2, mode = c("regression", "canonical",
-  "invariant", "classic"), study, keepX = rep(ncol(X), ncomp),
-  keepY = rep(ncol(Y), ncomp), scale = TRUE, tol = 1e-06,
-  max.iter = 100, near.zero.var = FALSE, all.outputs = TRUE)
+mint.spls(
+  X,
+  Y,
+  ncomp = 2,
+  mode = c("regression", "canonical", "invariant", "classic"),
+  study,
+  keepX = rep(ncol(X), ncomp),
+  keepY = rep(ncol(Y), ncomp),
+  scale = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors combining multiple independent studies

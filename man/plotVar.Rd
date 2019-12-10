@@ -13,12 +13,31 @@
 \alias{plotVar.rgcca}
 \title{Plot of Variables}
 \usage{
-plotVar(object, comp = NULL, comp.select = comp, plot = TRUE,
-  var.names = NULL, blocks = NULL, X.label = NULL, Y.label = NULL,
-  Z.label = NULL, abline = TRUE, col, cex, pch, font, cutoff = 0,
-  rad.in = 0.5, title = "Correlation Circle Plots", legend = FALSE,
-  legend.title = "Block", style = "ggplot2", overlap = TRUE,
-  axes.box = "all", label.axes.box = "both")
+plotVar(
+  object,
+  comp = NULL,
+  comp.select = comp,
+  plot = TRUE,
+  var.names = NULL,
+  blocks = NULL,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = TRUE,
+  col,
+  cex,
+  pch,
+  font,
+  cutoff = 0,
+  rad.in = 0.5,
+  title = "Correlation Circle Plots",
+  legend = FALSE,
+  legend.title = "Block",
+  style = "ggplot2",
+  overlap = TRUE,
+  axes.box = "all",
+  label.axes.box = "both"
+)
 }
 \arguments{
 \item{object}{object of class inheriting from \code{"rcc"}, \code{"pls"},

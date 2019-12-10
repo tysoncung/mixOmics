@@ -14,35 +14,84 @@ curves for supervised classification}
 \usage{
 auroc(object, ...)
 
-\method{auroc}{mixo_plsda}(object, newdata = object$input.X,
-  outcome.test = as.factor(object$Y), multilevel = NULL, plot = TRUE,
-  roc.comp = 1, ...)
+\method{auroc}{mixo_plsda}(
+  object,
+  newdata = object$input.X,
+  outcome.test = as.factor(object$Y),
+  multilevel = NULL,
+  plot = TRUE,
+  roc.comp = 1,
+  ...
+)
 
-\method{auroc}{mixo_splsda}(object, newdata = object$input.X,
-  outcome.test = as.factor(object$Y), multilevel = NULL, plot = TRUE,
-  roc.comp = 1, ...)
+\method{auroc}{mixo_splsda}(
+  object,
+  newdata = object$input.X,
+  outcome.test = as.factor(object$Y),
+  multilevel = NULL,
+  plot = TRUE,
+  roc.comp = 1,
+  ...
+)
 
-\method{auroc}{mint.plsda}(object, newdata = object$X,
-  outcome.test = as.factor(object$Y), study.test = object$study,
-  multilevel = NULL, plot = TRUE, roc.comp = 1,
-  roc.study = "global", ...)
+\method{auroc}{mint.plsda}(
+  object,
+  newdata = object$X,
+  outcome.test = as.factor(object$Y),
+  study.test = object$study,
+  multilevel = NULL,
+  plot = TRUE,
+  roc.comp = 1,
+  roc.study = "global",
+  ...
+)
 
-\method{auroc}{mint.splsda}(object, newdata = object$X,
-  outcome.test = as.factor(object$Y), study.test = object$study,
-  multilevel = NULL, plot = TRUE, roc.comp = 1,
-  roc.study = "global", ...)
+\method{auroc}{mint.splsda}(
+  object,
+  newdata = object$X,
+  outcome.test = as.factor(object$Y),
+  study.test = object$study,
+  multilevel = NULL,
+  plot = TRUE,
+  roc.comp = 1,
+  roc.study = "global",
+  ...
+)
 
-\method{auroc}{sgccda}(object, newdata = object$X,
-  outcome.test = as.factor(object$Y), multilevel = NULL, plot = TRUE,
-  roc.block = 1, roc.comp = 1, ...)
+\method{auroc}{sgccda}(
+  object,
+  newdata = object$X,
+  outcome.test = as.factor(object$Y),
+  multilevel = NULL,
+  plot = TRUE,
+  roc.block = 1,
+  roc.comp = 1,
+  ...
+)
 
-\method{auroc}{mint.block.plsda}(object, newdata = object$X,
-  study.test = object$study, outcome.test = as.factor(object$Y),
-  multilevel = NULL, plot = TRUE, roc.block = 1, roc.comp = 1, ...)
+\method{auroc}{mint.block.plsda}(
+  object,
+  newdata = object$X,
+  study.test = object$study,
+  outcome.test = as.factor(object$Y),
+  multilevel = NULL,
+  plot = TRUE,
+  roc.block = 1,
+  roc.comp = 1,
+  ...
+)
 
-\method{auroc}{mint.block.splsda}(object, newdata = object$X,
-  study.test = object$study, outcome.test = as.factor(object$Y),
-  multilevel = NULL, plot = TRUE, roc.block = 1, roc.comp = 1, ...)
+\method{auroc}{mint.block.splsda}(
+  object,
+  newdata = object$X,
+  study.test = object$study,
+  outcome.test = as.factor(object$Y),
+  multilevel = NULL,
+  plot = TRUE,
+  roc.block = 1,
+  roc.comp = 1,
+  ...
+)
 }
 \arguments{
 \item{object}{Object of class inherited from one of the following supervised

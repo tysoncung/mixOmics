@@ -5,14 +5,35 @@
 \title{Generic function to choose the parameters in the different methods in
 mixOmics}
 \usage{
-tune(method, X, Y, multilevel = NULL, ncomp, study, test.keepX = c(5,
-  10, 15), test.keepY = NULL, already.tested.X, already.tested.Y,
-  mode = "regression", nrepeat = 1, grid1 = seq(0.001, 1, length =
-  5), grid2 = seq(0.001, 1, length = 5), validation = "Mfold",
-  folds = 10, dist = "max.dist", measure = c("BER"), auc = FALSE,
-  progressBar = TRUE, near.zero.var = FALSE, logratio = "none",
-  center = TRUE, scale = TRUE, max.iter = 100, tol = 1e-09,
-  light.output = TRUE)
+tune(
+  method,
+  X,
+  Y,
+  multilevel = NULL,
+  ncomp,
+  study,
+  test.keepX = c(5, 10, 15),
+  test.keepY = NULL,
+  already.tested.X,
+  already.tested.Y,
+  mode = "regression",
+  nrepeat = 1,
+  grid1 = seq(0.001, 1, length = 5),
+  grid2 = seq(0.001, 1, length = 5),
+  validation = "Mfold",
+  folds = 10,
+  dist = "max.dist",
+  measure = c("BER"),
+  auc = FALSE,
+  progressBar = TRUE,
+  near.zero.var = FALSE,
+  logratio = "none",
+  center = TRUE,
+  scale = TRUE,
+  max.iter = 100,
+  tol = 1e-09,
+  light.output = TRUE
+)
 }
 \arguments{
 \item{method}{This parameter is used to pass all other argument to the

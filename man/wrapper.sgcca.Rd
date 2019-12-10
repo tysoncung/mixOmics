@@ -5,10 +5,21 @@
 \title{mixOmics wrapper for Sparse Generalised Canonical Correlation Analysis
 (sgcca)}
 \usage{
-wrapper.sgcca(X, design = 1 - diag(length(X)), penalty = NULL,
-  ncomp = 1, keepX, scheme = "horst", mode = "canonical",
-  scale = TRUE, init = "svd.single", tol = .Machine$double.eps,
-  max.iter = 1000, near.zero.var = FALSE, all.outputs = TRUE)
+wrapper.sgcca(
+  X,
+  design = 1 - diag(length(X)),
+  penalty = NULL,
+  ncomp = 1,
+  keepX,
+  scheme = "horst",
+  mode = "canonical",
+  scale = TRUE,
+  init = "svd.single",
+  tol = .Machine$double.eps,
+  max.iter = 1000,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{a list of data sets (called 'blocks') matching on the same samples.

@@ -16,8 +16,13 @@
 \alias{predict.mint.block.splsda}
 \title{Predict Method for (mint).(block).(s)pls(da) methods}
 \usage{
-\method{perf}{mint.spls}(object, validation = c("Mfold", "loo"),
-  folds = 10, progressBar = TRUE, ...)
+\method{perf}{mint.spls}(
+  object,
+  validation = c("Mfold", "loo"),
+  folds = 10,
+  progressBar = TRUE,
+  ...
+)
 }
 \arguments{
 \item{object}{object of class inheriting from

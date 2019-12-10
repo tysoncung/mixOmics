@@ -4,12 +4,28 @@
 \alias{tune.splsda}
 \title{Tuning functions for sPLS-DA method}
 \usage{
-tune.splsda(X, Y, ncomp = 1, test.keepX = c(5, 10, 15),
-  already.tested.X, validation = "Mfold", folds = 10,
-  dist = "max.dist", measure = "BER", scale = TRUE, auc = FALSE,
-  progressBar = TRUE, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE, nrepeat = 1, logratio = c("none", "CLR"),
-  multilevel = NULL, light.output = TRUE, cpus)
+tune.splsda(
+  X,
+  Y,
+  ncomp = 1,
+  test.keepX = c(5, 10, 15),
+  already.tested.X,
+  validation = "Mfold",
+  folds = 10,
+  dist = "max.dist",
+  measure = "BER",
+  scale = TRUE,
+  auc = FALSE,
+  progressBar = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  nrepeat = 1,
+  logratio = c("none", "CLR"),
+  multilevel = NULL,
+  light.output = TRUE,
+  cpus
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors. \code{NA}s are allowed.}

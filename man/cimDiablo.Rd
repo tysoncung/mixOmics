@@ -4,10 +4,19 @@
 \alias{cimDiablo}
 \title{Clustered Image Maps (CIMs) ("heat maps") for DIABLO}
 \usage{
-cimDiablo(object, color = NULL, color.Y, color.blocks, comp = NULL,
-  margins = c(2, 15), legend.position = "topright",
-  transpose = FALSE, row.names = TRUE, col.names = TRUE,
-  size.legend = 1.5)
+cimDiablo(
+  object,
+  color = NULL,
+  color.Y,
+  color.blocks,
+  comp = NULL,
+  margins = c(2, 15),
+  legend.position = "topright",
+  transpose = FALSE,
+  row.names = TRUE,
+  col.names = TRUE,
+  size.legend = 1.5
+)
 }
 \arguments{
 \item{object}{An object of class inheriting from \code{"block.splsda"}.}

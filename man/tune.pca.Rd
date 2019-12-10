@@ -4,9 +4,17 @@
 \alias{tune.pca}
 \title{Tune the number of principal components in PCA}
 \usage{
-tune.pca(X, ncomp = NULL, center = TRUE, scale = FALSE,
-  max.iter = 500, tol = 1e-09, logratio = "none", V = NULL,
-  multilevel = NULL)
+tune.pca(
+  X,
+  ncomp = NULL,
+  center = TRUE,
+  scale = FALSE,
+  max.iter = 500,
+  tol = 1e-09,
+  logratio = "none",
+  V = NULL,
+  multilevel = NULL
+)
 }
 \arguments{
 \item{X}{a numeric matrix (or data frame) which provides the data for the

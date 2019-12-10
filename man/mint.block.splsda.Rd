@@ -4,9 +4,23 @@
 \alias{mint.block.splsda}
 \title{NP-integration with Discriminant Analysis and variable selection}
 \usage{
-mint.block.splsda(X, Y, indY, study, ncomp = 2, keepX, design, scheme,
-  mode, scale = TRUE, init, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE, all.outputs = TRUE)
+mint.block.splsda(
+  X,
+  Y,
+  indY,
+  study,
+  ncomp = 2,
+  keepX,
+  design,
+  scheme,
+  mode,
+  scale = TRUE,
+  init,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{A list of data sets (called 'blocks') measured on the same samples.

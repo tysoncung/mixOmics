@@ -4,9 +4,17 @@
 \alias{tune.splslevel}
 \title{Tuning functions for multilevel sPLS method}
 \usage{
-tune.splslevel(X, Y, multilevel, ncomp = NULL, mode = "regression",
-  test.keepX = rep(ncol(X), ncomp), test.keepY = rep(ncol(Y), ncomp),
-  already.tested.X = NULL, already.tested.Y = NULL)
+tune.splslevel(
+  X,
+  Y,
+  multilevel,
+  ncomp = NULL,
+  mode = "regression",
+  test.keepX = rep(ncol(X), ncomp),
+  test.keepY = rep(ncol(Y), ncomp),
+  already.tested.X = NULL,
+  already.tested.Y = NULL
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors. \code{NA}s are allowed.}

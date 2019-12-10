@@ -5,9 +5,15 @@
 \alias{tune.rcc.default}
 \title{Estimate the parameters of regularization for Regularized CCA}
 \usage{
-tune.rcc(X, Y, grid1 = seq(0.001, 1, length = 5), grid2 = seq(0.001, 1,
-  length = 5), validation = c("loo", "Mfold"), folds = 10,
-  plot = TRUE)
+tune.rcc(
+  X,
+  Y,
+  grid1 = seq(0.001, 1, length = 5),
+  grid2 = seq(0.001, 1, length = 5),
+  validation = c("loo", "Mfold"),
+  folds = 10,
+  plot = TRUE
+)
 }
 \arguments{
 \item{X}{numeric matrix or data frame \eqn{(n \times p)}, the observations

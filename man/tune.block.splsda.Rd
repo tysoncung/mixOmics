@@ -5,12 +5,31 @@
 \title{Tuning function for block.splsda method (N-integration with sparse
 Discriminant Analysis)}
 \usage{
-tune.block.splsda(X, Y, indY, ncomp = 2, test.keepX, already.tested.X,
-  validation = "Mfold", folds = 10, dist = "max.dist",
-  measure = "BER", weighted = TRUE, progressBar = TRUE,
-  tol = 1e-06, max.iter = 100, near.zero.var = FALSE, nrepeat = 1,
-  design, scheme = "horst", scale = TRUE, init = "svd",
-  light.output = TRUE, cpus, name.save = NULL)
+tune.block.splsda(
+  X,
+  Y,
+  indY,
+  ncomp = 2,
+  test.keepX,
+  already.tested.X,
+  validation = "Mfold",
+  folds = 10,
+  dist = "max.dist",
+  measure = "BER",
+  weighted = TRUE,
+  progressBar = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  nrepeat = 1,
+  design,
+  scheme = "horst",
+  scale = TRUE,
+  init = "svd",
+  light.output = TRUE,
+  cpus,
+  name.save = NULL
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors. \code{NA}s are allowed.}

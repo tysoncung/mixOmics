@@ -4,10 +4,22 @@
 \alias{circosPlot}
 \title{circosPlot for DIABLO}
 \usage{
-circosPlot(object, comp = 1:min(object$ncomp), cutoff, color.Y,
-  color.blocks, color.cor, var.names = NULL, showIntraLinks = FALSE,
-  line = TRUE, size.legend = 0.8, ncol.legend = 1,
-  size.variables = 0.25, size.labels = 1, legend = TRUE)
+circosPlot(
+  object,
+  comp = 1:min(object$ncomp),
+  cutoff,
+  color.Y,
+  color.blocks,
+  color.cor,
+  var.names = NULL,
+  showIntraLinks = FALSE,
+  line = TRUE,
+  size.legend = 0.8,
+  ncol.legend = 1,
+  size.variables = 0.25,
+  size.labels = 1,
+  legend = TRUE
+)
 }
 \arguments{
 \item{object}{An object of class inheriting from \code{"block.splsda"}.}

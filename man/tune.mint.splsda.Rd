@@ -4,10 +4,23 @@
 \alias{tune.mint.splsda}
 \title{Estimate the parameters of mint.splsda method}
 \usage{
-tune.mint.splsda(X, Y, ncomp = 1, study, test.keepX = c(5, 10, 15),
-  already.tested.X, dist = "max.dist", measure = "BER", auc = FALSE,
-  progressBar = TRUE, scale = TRUE, tol = 1e-06, max.iter = 100,
-  near.zero.var = FALSE, light.output = TRUE)
+tune.mint.splsda(
+  X,
+  Y,
+  ncomp = 1,
+  study,
+  test.keepX = c(5, 10, 15),
+  already.tested.X,
+  dist = "max.dist",
+  measure = "BER",
+  auc = FALSE,
+  progressBar = TRUE,
+  scale = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  light.output = TRUE
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors. \code{NA}s are allowed.}

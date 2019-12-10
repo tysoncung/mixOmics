@@ -4,10 +4,24 @@
 \alias{plotArrow}
 \title{Arrow sample plot}
 \usage{
-plotArrow(object, comp = NULL, abline = FALSE, xlim = NULL,
-  ylim = NULL, group = NULL, col, cex, pch, title = NULL,
-  plot.arrows = TRUE, legend = FALSE, X.label = NULL,
-  Y.label = NULL, ind.names = FALSE, position.names = "centroid")
+plotArrow(
+  object,
+  comp = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  group = NULL,
+  col,
+  cex,
+  pch,
+  title = NULL,
+  plot.arrows = TRUE,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  ind.names = FALSE,
+  position.names = "centroid"
+)
 }
 \arguments{
 \item{object}{object of class inheriting from \pkg{mixOmics}: \code{PLS,

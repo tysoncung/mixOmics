@@ -4,10 +4,19 @@
 \alias{mint.splsda}
 \title{P-integration with Discriminant Analysis and variable selection}
 \usage{
-mint.splsda(X, Y, ncomp = 2, mode = c("regression", "canonical",
-  "invariant", "classic"), study, keepX = rep(ncol(X), ncomp),
-  scale = TRUE, tol = 1e-06, max.iter = 100, near.zero.var = FALSE,
-  all.outputs = TRUE)
+mint.splsda(
+  X,
+  Y,
+  ncomp = 2,
+  mode = c("regression", "canonical", "invariant", "classic"),
+  study,
+  keepX = rep(ncol(X), ncomp),
+  scale = TRUE,
+  tol = 1e-06,
+  max.iter = 100,
+  near.zero.var = FALSE,
+  all.outputs = TRUE
+)
 }
 \arguments{
 \item{X}{numeric matrix of predictors combining multiple independent studies

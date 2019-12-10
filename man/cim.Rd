@@ -4,16 +4,39 @@
 \alias{cim}
 \title{Clustered Image Maps (CIMs) ("heat maps")}
 \usage{
-cim(mat, color = NULL, row.names = TRUE, col.names = TRUE,
-  row.sideColors = NULL, col.sideColors = NULL, row.cex = NULL,
-  col.cex = NULL, threshold = 0, cluster = "both",
+cim(
+  mat,
+  color = NULL,
+  row.names = TRUE,
+  col.names = TRUE,
+  row.sideColors = NULL,
+  col.sideColors = NULL,
+  row.cex = NULL,
+  col.cex = NULL,
+  threshold = 0,
+  cluster = "both",
   dist.method = c("euclidean", "euclidean"),
-  clust.method = c("complete", "complete"), cut.tree = c(0, 0),
-  transpose = FALSE, symkey = TRUE, keysize = c(1, 1),
-  keysize.label = 1, zoom = FALSE, title = NULL, xlab = NULL,
-  ylab = NULL, margins = c(5, 5), lhei = NULL, lwid = NULL,
-  comp = NULL, center = TRUE, scale = FALSE, mapping = "XY",
-  legend = NULL, save = NULL, name.save = NULL)
+  clust.method = c("complete", "complete"),
+  cut.tree = c(0, 0),
+  transpose = FALSE,
+  symkey = TRUE,
+  keysize = c(1, 1),
+  keysize.label = 1,
+  zoom = FALSE,
+  title = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  margins = c(5, 5),
+  lhei = NULL,
+  lwid = NULL,
+  comp = NULL,
+  center = TRUE,
+  scale = FALSE,
+  mapping = "XY",
+  legend = NULL,
+  save = NULL,
+  name.save = NULL
+)
 }
 \arguments{
 \item{mat}{numeric matrix of values to be plotted. Alternatively, an object

@@ -21,48 +21,105 @@
 \usage{
 \method{plot}{tune.rcc}(x, col = heat.colors, ...)
 
-\method{plot}{pca}(x, ncomp = min(10, length(x$sdev)),
-  type = "barplot", explained.var = TRUE, ...)
+\method{plot}{pca}(
+  x,
+  ncomp = min(10, length(x$sdev)),
+  type = "barplot",
+  explained.var = TRUE,
+  ...
+)
 
 \method{plot}{rcc}(x, scree.type = c("pointplot", "barplot"), ...)
 
-\method{plot}{perf.pls.mthd}(x, criterion = "MSEP",
-  xlab = "number of components", ylab = NULL, LimQ2 = 0.0975,
-  LimQ2.col = "darkgrey", cTicks = NULL, layout = NULL, ...)
+\method{plot}{perf.pls.mthd}(
+  x,
+  criterion = "MSEP",
+  xlab = "number of components",
+  ylab = NULL,
+  LimQ2 = 0.0975,
+  LimQ2.col = "darkgrey",
+  cTicks = NULL,
+  layout = NULL,
+  ...
+)
 
-\method{plot}{perf.spls.mthd}(x, criterion = "MSEP",
-  xlab = "number of components", ylab = NULL, LimQ2 = 0.0975,
-  LimQ2.col = "darkgrey", cTicks = NULL, layout = NULL, ...)
+\method{plot}{perf.spls.mthd}(
+  x,
+  criterion = "MSEP",
+  xlab = "number of components",
+  ylab = NULL,
+  LimQ2 = 0.0975,
+  LimQ2.col = "darkgrey",
+  cTicks = NULL,
+  layout = NULL,
+  ...
+)
 
-\method{plot}{perf.plsda.mthd}(x, dist = c("all", "max.dist",
-  "centroids.dist", "mahalanobis.dist"), measure = c("all", "overall",
-  "BER"), col, xlab = NULL, ylab = NULL, overlay = c("all",
-  "measure", "dist"), legend.position = c("vertical", "horizontal"),
-  sd = TRUE, ...)
-
-\method{plot}{perf.splsda.mthd}(x, dist = c("all", "max.dist",
-  "centroids.dist", "mahalanobis.dist"), measure = c("all", "overall",
-  "BER"), col, xlab = NULL, ylab = NULL, overlay = c("all",
-  "measure", "dist"), legend.position = c("vertical", "horizontal"),
-  sd = TRUE, ...)
-
-\method{plot}{perf.mint.plsda.mthd}(x, dist = c("all", "max.dist",
-  "centroids.dist", "mahalanobis.dist"), measure = c("all", "overall",
-  "BER"), col, xlab = NULL, ylab = NULL, study = "global",
+\method{plot}{perf.plsda.mthd}(
+  x,
+  dist = c("all", "max.dist", "centroids.dist", "mahalanobis.dist"),
+  measure = c("all", "overall", "BER"),
+  col,
+  xlab = NULL,
+  ylab = NULL,
   overlay = c("all", "measure", "dist"),
-  legend.position = c("vertical", "horizontal"), ...)
+  legend.position = c("vertical", "horizontal"),
+  sd = TRUE,
+  ...
+)
 
-\method{plot}{perf.mint.splsda.mthd}(x, dist = c("all", "max.dist",
-  "centroids.dist", "mahalanobis.dist"), measure = c("all", "overall",
-  "BER"), col, xlab = NULL, ylab = NULL, study = "global",
+\method{plot}{perf.splsda.mthd}(
+  x,
+  dist = c("all", "max.dist", "centroids.dist", "mahalanobis.dist"),
+  measure = c("all", "overall", "BER"),
+  col,
+  xlab = NULL,
+  ylab = NULL,
   overlay = c("all", "measure", "dist"),
-  legend.position = c("vertical", "horizontal"), ...)
+  legend.position = c("vertical", "horizontal"),
+  sd = TRUE,
+  ...
+)
 
-\method{plot}{perf.sgccda.mthd}(x, dist = c("all", "max.dist",
-  "centroids.dist", "mahalanobis.dist"), measure = c("all", "overall",
-  "BER"), col, weighted = TRUE, xlab = NULL, ylab = NULL,
+\method{plot}{perf.mint.plsda.mthd}(
+  x,
+  dist = c("all", "max.dist", "centroids.dist", "mahalanobis.dist"),
+  measure = c("all", "overall", "BER"),
+  col,
+  xlab = NULL,
+  ylab = NULL,
+  study = "global",
   overlay = c("all", "measure", "dist"),
-  legend.position = c("vertical", "horizontal"), sd = TRUE, ...)
+  legend.position = c("vertical", "horizontal"),
+  ...
+)
+
+\method{plot}{perf.mint.splsda.mthd}(
+  x,
+  dist = c("all", "max.dist", "centroids.dist", "mahalanobis.dist"),
+  measure = c("all", "overall", "BER"),
+  col,
+  xlab = NULL,
+  ylab = NULL,
+  study = "global",
+  overlay = c("all", "measure", "dist"),
+  legend.position = c("vertical", "horizontal"),
+  ...
+)
+
+\method{plot}{perf.sgccda.mthd}(
+  x,
+  dist = c("all", "max.dist", "centroids.dist", "mahalanobis.dist"),
+  measure = c("all", "overall", "BER"),
+  col,
+  weighted = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  overlay = c("all", "measure", "dist"),
+  legend.position = c("vertical", "horizontal"),
+  sd = TRUE,
+  ...
+)
 
 \method{plot}{tune.spls}(x, optimal = TRUE, sd = TRUE, col, ...)
 
@@ -71,14 +128,14 @@
 \method{plot}{tune.block.splsda}(x, sd = TRUE, col, ...)
 }
 \arguments{
-\item{x}{Object returned by \code{tune.rcc}.}
+\item{x}{an \code{tune.splsda} object.}
 
-\item{col}{A character string specifying the colors function to use:
-\code{\link{terrain.colors}}, \code{\link{topo.colors}},
-\code{\link{rainbow}} or similar functions. Defaults to
-\code{\link{heat.colors}}.}
+\item{col}{character (or symbol) color to be used, possibly vector. One
+color per component.}
 
-\item{...}{Not used currently.}
+\item{...}{arguments to be passed to other methods. For the
+\code{"pointplot"} type see \code{\link{points}}, for \code{"barplot"} type
+see \code{\link{barplot}}.}
 
 \item{ncomp}{number of PCs to show.}
 
@@ -123,8 +180,8 @@ shown with all outputs; if 'measure', a graph is shown per distance; if
 \item{legend.position}{position of the legend, one of "vertical" (only one
 column) or "horizontal" (two columns).}
 
-\item{sd}{If 'nrepeat' was used in the call to 'perf', error bar shows the
-standard deviation if sd=TRUE}
+\item{sd}{If 'nrepeat' was used in the call to 'tune.splsda', error bar
+shows the standard deviation if sd=TRUE}
 
 \item{study}{Indicates which study-specific outputs to plot. A character
 vector containing some levels of \code{object$study}, "all.partial" to plot
@@ -134,31 +191,6 @@ all studies or "global" is expected. Default to "global".}
 Weighted vote.}
 
 \item{optimal}{If TRUE, highlights the optimal keepX per component}
-
-\item{x}{a \code{pca} object obtained from \code{pca} function.}
-
-\item{...}{other arguments passed to \code{plot}.}
-
-\item{x}{object of class inheriting from \code{"rcc"}.}
-
-\item{...}{arguments to be passed to other methods. For the
-\code{"pointplot"} type see \code{\link{points}}, for \code{"barplot"} type
-see \code{\link{barplot}}.}
-
-\item{x}{an \code{perf} object.}
-
-\item{col}{character (or symbol) color to be used, possibly vector. One
-color per distance \code{dist}.}
-
-\item{\dots}{Further arguments sent to \code{\link{xyplot}} function.}
-
-\item{x}{an \code{tune.splsda} object.}
-
-\item{sd}{If 'nrepeat' was used in the call to 'tune.splsda', error bar
-shows the standard deviation if sd=TRUE}
-
-\item{col}{character (or symbol) color to be used, possibly vector. One
-color per component.}
 
 \item{\dots}{Further arguments sent to \code{\link{xyplot}} function.}
 }
