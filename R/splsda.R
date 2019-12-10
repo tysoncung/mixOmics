@@ -22,36 +22,31 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #############################################################################################################
-
-
-# ========================================================================================================
-# splsda: perform a sPLS-DA
-# this function is a particular setting of .mintBlock, the formatting of the input is checked in .mintWrapper
-# ========================================================================================================
-
+# ========================================================================== #
+# pls: perform a sparse PLS-DA
+# this function is a particular setting of .mintBlock.
+# The formatting of the input is checked in .mintWrapper
+# ========================================================================== #
+## ----------- Description ----------- 
 #' Sparse Partial Least Squares Discriminant Analysis (sPLS-DA)
-#'
-#' Function to perform sparse Partial Least Squares to classify samples
-#' (supervised analysis) and select variables.
-#'
-#' \code{splsda} function fits an sPLS model with \eqn{1, \ldots ,}\code{ncomp}
+#' 
+#' Function to perform sparse Partial Least Squares to classify 
+#' samples (supervised analysis) and select variables.
+## ----------- Parameters ----------- 
+#' @inheritParams plsda
+#' @inheritParams spls
+## ----------- details ----------- 
+#' @details \code{splsda} function fits an sPLS model with \eqn{1, \ldots ,}\code{ncomp}
 #' components to the factor or class vector \code{Y}. The appropriate indicator
 #' (dummy) matrix is created. Logratio transform and multilevel analysis are
 #' performed sequentially as internal pre-processing step, through
 #' \code{\link{logratio.transfo}} and \code{\link{withinVariation}}
-#' respectively.
-#'
-#' Logratio can only be applied if the data do not contain any 0 value (for
-#' count data, we thus advise the normalise raw data with a 1 offset).
-#'
+#' respectively. Logratio can only be applied if the data do not contain any 
+#' 0 value (for count data, we thus advise the normalise raw data with a 1 offset). 
 #' More details about the PLS modes in \code{?pls}.
-## --------------------------------------------------------------------------------------- arguments
-#' @inheritParams plsda
-#' @inheritParams spls
-# @param keepX numeric vector of length \code{ncomp}, the number of variables
-# to keep in \eqn{X}-loadings. By default all variables are kept in the model.
-## --------------------------------------------------------------------------------------- value
-#' @return \code{splsda} returns an object of class \code{"splsda"}, a list that contains the following components:
+## ----------- Value -----------
+#' @return \code{splsda} returns an object of class \code{"splsda"}, 
+#' a list that contains the following components:
 #' \item{X}{the centered and standardized original predictor matrix.}
 #' \item{Y}{the centered and standardized indicator response vector or matrix.}
 #' \item{ind.mat}{the indicator matrix.} \item{ncomp}{the number of components
@@ -72,7 +67,8 @@
 #' dummy matrix Y).} \item{mat.c}{matrix of coefficients from the regression of
 #' X / residual matrices X on the X-variates, to be used internally by
 #' \code{predict}.} \item{defl.matrix}{residual matrices X for each dimension.}
-#' @author Florian Rohart, Ignacio González, Kim-Anh Lê Cao.
+## ----------- Ref ----------- 
+#' @author Florian Rohart, Ignacio González, Kim-Anh Lê Cao, Al J Abadi.
 #' @seealso \code{\link{spls}}, \code{\link{summary}}, \code{\link{plotIndiv}},
 #' \code{\link{plotVar}}, \code{\link{cim}}, \code{\link{network}},
 #' \code{\link{predict}}, \code{\link{perf}}, \code{\link{mint.block.splsda}},
@@ -92,107 +88,15 @@
 #' integration of repeated measures experiments from two assays. BMC
 #' bioinformatics 13(1), 325 (2012)
 #' @keywords regression multivariate
-#' @examples
-#'
-#' ## First example
-#' X <- breast.tumors$gene.exp
-#' # Y will be transformed as a factor in the function,
-#' # but we set it as a factor to set up the colors.
-#' Y <- as.factor(breast.tumors$sample$treatment)
-#'
-#' res <- splsda(X, Y, ncomp = 2, keepX = c(25, 25))
-#'
-#'
-#' # individual names appear
-#' plotIndiv(res, ind.names = Y, legend = TRUE, ellipse =TRUE)
-#'
-#' \dontrun{
-#' ## Second example: one-factor analysis with sPLS-DA, selecting a subset of variables
-#' # as in the paper Liquet et al.
-#' #--------------------------------------------------------------
-#' X <- vac18$genes
-#' Y <- vac18$stimulation
-#' # sample indicates the repeated measurements
-#' design <- data.frame(sample = vac18$sample)
-#' Y = data.frame(stimul = vac18$stimulation)
-#'
-#' # multilevel sPLS-DA model
-#' res.1level <- splsda(X, Y = Y, ncomp = 3, multilevel = design,
-#' keepX = c(30, 137, 123))
-#'
-#' # set up colors for plotIndiv
-#' col.stim <- c("darkblue", "purple", "green4","red3")
-#' plotIndiv(res.1level, ind.names = Y, col.per.group = col.stim)
-#'
-#' ## Third example: two-factor analysis with sPLS-DA, selecting a subset of variables
-#' # as in the paper Liquet et al.
-#' #--------------------------------------------------------------
-#'
-#' X <- vac18.simulated$genes
-#' design <- data.frame(sample = vac18.simulated$sample)
-#' Y = data.frame( stimu = vac18.simulated$stimulation,
-#' time = vac18.simulated$time)
-#'
-#' res.2level <- splsda(X, Y = Y, ncomp = 2, multilevel = design,
-#' keepX = c(200, 200))
-#'
-#' plotIndiv(res.2level, group = Y$stimu, ind.names = vac18.simulated$time,
-#' legend = TRUE, style = 'lattice')
-#'
-#'
-#'
-#' ## Fourth example: with more than two classes
-#' # ------------------------------------------------
-#'
-#' X <- as.matrix(liver.toxicity$gene)
-#' # Y will be transformed as a factor in the function,
-#' # but we set it as a factor to set up the colors.
-#' Y <- as.factor(liver.toxicity$treatment[, 4])
-#'
-#' splsda.liver <- splsda(X, Y, ncomp = 2, keepX = c(20, 20))
-#'
-#' # individual name is set to the treatment
-#' plotIndiv(splsda.liver, ind.names = Y, ellipse = TRUE, legend = TRUE)
-#'
-#'
-#' ## Fifth example: 16S data with multilevel decomposion and log ratio transformation
-#' # ------------------------------------------------
-#'
-#' splsda.16S = splsda(
-#' X = diverse.16S$data.TSS,  # TSS normalised data
-#' Y =  diverse.16S$bodysite,
-#' multilevel = diverse.16S$sample, # multilevel decomposition
-#' ncomp = 2,
-#' keepX =  c(10, 150),
-#' logratio= 'CLR')  # CLR log ratio transformation
-#'
-#'
-#' plotIndiv(splsda.16S, ind.names = FALSE, pch = 16, ellipse = TRUE, legend = TRUE)
-#' #OTUs selected at the family level
-#' diverse.16S$taxonomy[selectVar(splsda.16S, comp = 1)$name,'Family']
-#'
-#' }
-#'
+## ----------- Examples ----------- 
+#' @example examples/splsda-example.R
+## setting the document name here so internal would not force the wrong name
+#' @name splsda
+NULL
 
-###########################################################
-## generic function
-#############################################################
-#' @usage \S4method{splsda}{ANY}(X, Y, ncomp = 2,
-#' mode = c("regression", "canonical", "invariant", "classic"),
-#' keepX, scale = TRUE, tol = 1e-06, max.iter = 100, near.zero.var = FALSE,
-#' logratio = c("none", "CLR"),  multilevel = NULL, all.outputs = TRUE)
-## arguemnts for 'ANY' must be copied from internal to @usage ANY,for generic other arguments
-## passed to methods can be added plus '...' so the methods can get '...' - if we only
-## include X, RStudio won't suggest the rest automatically for autofill
-#' @export
-#' @rdname splsda
-setGeneric("splsda", def = function(X, Y, formula=NULL, ncomp = 2, mode = c("regression", "canonical", "invariant", "classic"), keepX, scale = TRUE, tol = 1e-06, max.iter = 100, near.zero.var = FALSE, logratio = "none", multilevel = NULL, all.outputs = TRUE,...) standardGeneric("splsda"))
-
-#############################################################
-## internal function
-#############################################################
-.splsda = function(X,
-                   Y,
+## ----------- Internal ----------- 
+.splsda = function(X=NULL,
+                   Y=NULL,
                    ncomp = 2,
                    mode = c("regression", "canonical", "invariant", "classic"),
                    keepX,
@@ -243,7 +147,7 @@ setGeneric("splsda", def = function(X, Y, formula=NULL, ncomp = 2, mode = c("reg
     input.X = result$input.X,
     mat.c = result$mat.c#,
   )
-
+  
   class(out) = c("mixo_splsda","mixo_spls","DA")
   # output if multilevel analysis
   if (!is.null(multilevel))
@@ -251,9 +155,14 @@ setGeneric("splsda", def = function(X, Y, formula=NULL, ncomp = 2, mode = c("reg
     out$multilevel = multilevel
     class(out) = c("mixo_mlsplsda",class(out))
   }
-
+  
   return(invisible(out))
 }
+
+## ----------- Generic ----------- 
+#' @export
+#' @rdname splsda
+setGeneric('splsda', function(data=NULL, X=NULL, Y=NULL, formula=NULL, ...) standardGeneric('splsda'))
 
 ## ----------- Methods ----------- 
 #### ANY ####
