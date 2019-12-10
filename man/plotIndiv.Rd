@@ -11,16 +11,408 @@
 \alias{plotIndiv.rgcca}
 \alias{plotIndiv.mint.spls}
 \alias{plotIndiv.mint.splsda}
+\alias{plotIndiv.mint.pls}
+\alias{plotIndiv.mint.plsda}
 \title{Plot of Individuals (Experimental Units)}
 \usage{
 plotIndiv(object, ...)
+
+\method{plotIndiv}{mixo_pls}(
+  object,
+  comp = NULL,
+  rep.space = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1,
+  background = NULL
+)
+
+\method{plotIndiv}{mixo_spls}(
+  object,
+  comp = NULL,
+  rep.space = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1,
+  background = NULL
+)
+
+\method{plotIndiv}{rcc}(
+  object,
+  comp = NULL,
+  rep.space = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1,
+  background = NULL
+)
+
+\method{plotIndiv}{pca}(
+  object,
+  comp = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.pls}(
+  object,
+  comp = NULL,
+  study = "global",
+  rep.space = NULL,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.spls}(
+  object,
+  comp = NULL,
+  study = "global",
+  rep.space = NULL,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.plsda}(
+  object,
+  comp = NULL,
+  study = "global",
+  rep.space = NULL,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.splsda}(
+  object,
+  comp = NULL,
+  study = "global",
+  rep.space = NULL,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.sgcca}(
+  object,
+  comp = NULL,
+  blocks = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
+
+\method{plotIndiv}{mint.rgcca}(
+  object,
+  comp = NULL,
+  blocks = NULL,
+  ind.names = TRUE,
+  group,
+  col.per.group,
+  style = "ggplot2",
+  ellipse = FALSE,
+  ellipse.level = 0.95,
+  centroid = FALSE,
+  star = FALSE,
+  title = NULL,
+  subtitle,
+  legend = FALSE,
+  X.label = NULL,
+  Y.label = NULL,
+  Z.label = NULL,
+  abline = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  col,
+  cex,
+  pch,
+  pch.levels,
+  alpha = 0.2,
+  axes.box = "box",
+  layout = NULL,
+  size.title = rel(2),
+  size.subtitle = rel(1.5),
+  size.xlabel = rel(1),
+  size.ylabel = rel(1),
+  size.axis = rel(0.8),
+  size.legend = rel(1),
+  size.legend.title = rel(1.1),
+  legend.title = "Legend",
+  legend.title.pch = "Legend",
+  legend.position = "right",
+  point.lwd = 1
+)
 }
 \arguments{
 \item{object}{object of class inherited from any \pkg{mixOmics}: \code{PLS,
 sPLS, PLS-DA, SPLS-DA, rCC, PCA, sPCA, IPCA, sIPCA, rGCCA, sGCCA, sGCCDA}}
 
-\item{...}{external arguments or type par can be added with \code{style =
-'graphics'}}
+\item{...}{other arguments passed to function methods.}
 
 \item{comp}{integer vector of length two (or three to 3d). The components
 that will be used on the horizontal and the vertical axis respectively to
@@ -35,13 +427,6 @@ the subspace to project the individuals. Defaults to \code{"X-variate"}
 individuals. For objects of class \code{"rgcca"} and \code{"sgcca"},
 numerical value indicating the block data set form which to represent the
 individuals.}
-
-\item{blocks}{integer value of name of a block to be plotted using the GCCA
-module. See examples.}
-
-\item{study}{Indicates which study-specific outputs to plot. A character
-vector containing some levels of \code{object$study}, "all.partial" to plot
-all studies or "global" is expected. Default to "global".}
 
 \item{ind.names}{either a character vector of names for the individuals to
 be plotted, or \code{FALSE} for no names. If \code{TRUE}, the row names of
@@ -150,6 +535,13 @@ FALSE}}
 
 \item{background}{color the background by the predicted class, see
 \code{\link{background.predict}}}
+
+\item{study}{Indicates which study-specific outputs to plot. A character
+vector containing some levels of \code{object$study}, "all.partial" to plot
+all studies or "global" is expected. Default to "global".}
+
+\item{blocks}{integer value of name of a block to be plotted using the GCCA
+module. See examples.}
 }
 \value{
 none
@@ -207,8 +599,8 @@ X <- nutrimouse$lipid
 Y <- nutrimouse$gene
 nutri.res <- rcc(X, Y, ncomp = 3, lambda1 = 0.064, lambda2 = 0.008)
 
-# default, only in the X space
-
+# default, panel plot for X and Y subspaces
+plotIndiv(nutri.res)
 
 # ellipse with respect to genotype in the XY space,
 # names also indicate genotype
