@@ -2,22 +2,45 @@
 % Please edit documentation in R/mixOmics.R
 \name{mixOmics}
 \alias{mixOmics}
-\title{PLS-derived methods: one function to rule them all!}
+\title{\emph{This is the documentation for mixOmics function from mixOmics package. For package documentation refer to \code{help(package='mixOmics')}}. PLS-derived methods: one function to rule them all!
+
+This function performs one of the PLS derived methods included in the
+mixOmics package that is the most appropriate for your input data, one of
+(mint).(block).(s)pls(da) depending on your input data (single data, list of
+data, discrete outcome, \dots{})
+
+This function performs one of the PLS derived methods included in the
+mixOmics package that is the most appropriate for your input data, one of
+(mint).(block).(s)pls(da).
+
+If your input data \code{X} is a matrix, then the algorithm is directed
+towards one of (mint).(s)pls(da) depending on your input data \code{Y}
+(factor for the discrete outcome directs the algorithm to DA analysis) and
+whether you input a \code{study} parameter (MINT analysis) or a \code{keepX}
+parameter (sparse analysis).
+
+If your input data \code{X} is a list of matrices, then the algorithm is
+directed towards one of (mint).block.(s)pls(da) depending on your input data
+\code{Y} (factor for the discrete outcome directs the algorithm to DA
+analysis) and whether you input a \code{study} parameter (MINT analysis) or
+a \code{keepX} parameter (sparse analysis).
+
+More details about the PLS modes in \code{?pls}.}
 \usage{
 mixOmics(
-  X,
-  Y,
-  indY,
-  study,
-  ncomp,
-  keepX,
-  keepY,
-  design,
+  X = NULL,
+  Y = NULL,
+  indY = NULL,
+  study = NULL,
+  ncomp = NULL,
+  keepX = NULL,
+  keepY = NULL,
+  design = NULL,
   tau = NULL,
-  scheme,
-  mode,
-  scale,
-  init,
+  scheme = NULL,
+  mode = NULL,
+  scale = NULL,
+  init = NULL,
   tol = 1e-06,
   max.iter = 100,
   near.zero.var = FALSE
@@ -34,7 +57,7 @@ class vector for the discrete outcome.}
 \item{indY}{To supply if Y is missing, indicates the position of the outcome
 in the list X}
 
-\item{study}{grouping factor indicating which samples are from the same
+\item{study}{Grouping factor indicating which samples are from the same
 study}
 
 \item{ncomp}{If \code{X} is a data matrix, \code{ncomp} is a single value.
@@ -47,13 +70,13 @@ value for each block).}
 
 \item{keepY}{Number of variables to keep in the \eqn{Y}-loadings}
 
-\item{design}{numeric matrix of size (number of blocks) x (number of blocks)
+\item{design}{Numeric matrix of size (number of blocks) x (number of blocks)
 with only 0 or 1 values. A value of 1 (0) indicates a relationship (no
 relationship) between the blocks to be modelled. If \code{Y} is provided
 instead of \code{indY}, the \code{design} matrix is changed to include
 relationships to \code{Y}.}
 
-\item{tau}{numeric vector of length the number of blocks in \code{X}. Each
+\item{tau}{Numeric vector of length the number of blocks in \code{X}. Each
 regularization parameter will be applied on each block and takes the value
 between 0 (no regularisation) and 1. If tau = "optimal" the shrinkage
 paramaters are estimated for each block and each dimension using the Schafer
@@ -62,11 +85,11 @@ and Strimmer (2005) analytical formula.}
 \item{scheme}{Either "horst", "factorial" or "centroid" (Default:
 "centroid"), see reference paper.}
 
-\item{mode}{character string. What type of algorithm to use, (partially)
+\item{mode}{Character string. What type of algorithm to use, (partially)
 matching one of \code{"regression"}, \code{"canonical"}, \code{"invariant"}
 or \code{"classic"}. See Details.}
 
-\item{scale}{boleean. If scale = TRUE, each block is standardized to zero
+\item{scale}{Boleean. If scale = TRUE, each block is standardized to zero
 means and unit variances (default: TRUE)}
 
 \item{init}{Mode of initialization use in the algorithm, either by Singular
@@ -75,23 +98,24 @@ block independently ("svd.single") . Default to "svd".}
 
 \item{tol}{Convergence stopping value.}
 
-\item{max.iter}{integer, the maximum number of iterations.}
+\item{max.iter}{Integer, the maximum number of iterations.}
 
-\item{near.zero.var}{boolean, see the internal \code{\link{nearZeroVar}}
+\item{near.zero.var}{Boolean, see the internal \code{\link{nearZeroVar}}
 function (should be set to TRUE in particular for data with many zero
 values). Setting this argument to FALSE (when appropriate) will speed up the
 computations. Default value is FALSE}
 }
 \value{
-none
+Depending on the inputs, one of the outputs from mixOmics pls-dervied family.
 }
 \description{
+\emph{This is the documentation for mixOmics function from mixOmics package. For package documentation refer to \code{help(package='mixOmics')}}. PLS-derived methods: one function to rule them all!
+
 This function performs one of the PLS derived methods included in the
 mixOmics package that is the most appropriate for your input data, one of
 (mint).(block).(s)pls(da) depending on your input data (single data, list of
 data, discrete outcome, \dots{})
-}
-\details{
+
 This function performs one of the PLS derived methods included in the
 mixOmics package that is the most appropriate for your input data, one of
 (mint).(block).(s)pls(da).
@@ -111,71 +135,7 @@ a \code{keepX} parameter (sparse analysis).
 More details about the PLS modes in \code{?pls}.
 }
 \examples{
-
-
-
-## -- directed towards PLS framework because X is a matrix and the study argument is missing
-# ----------------------------------------------------
-X = liver.toxicity$gene
-Y = liver.toxicity$clinic
-Y.factor = as.factor(liver.toxicity$treatment[, 4])
-
-# directed towards PLS
-out = mixOmics(X, Y, ncomp = 2)
-
-# directed towards sPLS because of keepX and/or keepY
-out = mixOmics(X, Y, ncomp = 2, keepX = c(50, 50), keepY = c(10, 10))
-
-# directed towards PLS-DA because Y is a factor
-out = mixOmics(X, Y.factor, ncomp = 2)
-
-# directed towards sPLS-DA because Y is a factor and there is a keepX
-out = mixOmics(X, Y.factor, ncomp = 2, keepX = c(20, 20))
-
-
-\dontrun{
-## -- directed towards block.pls framework because X is a list
-# ----------------------------------------------------
-Y = unmap(nutrimouse$diet)
-data = list(gene = nutrimouse$gene, lipid = nutrimouse$lipid, Y = Y)
-
-# directed towards block PLS
-out = mixOmics(X = data, Y = Y,ncomp = 3)
-
-# directed towards block sPLS because of keepX and/or keepY
-out = mixOmics(X = data, Y = Y,ncomp = 3,
-keepX = list(gene = c(10,10), lipid = c(15,15)))
-
-# directed towards block PLS-DA because Y is a factor
-out = mixOmics(X = data, Y = nutrimouse$diet, ncomp = 3)
-
-# directed towards block sPLS-DA because Y is a factor and there is a keepX
-out = mixOmics(X = data, Y = nutrimouse$diet, ncomp = 3,
-keepX = list(gene = c(10,10), lipid = c(15,15)))
-
-
-## -- directed towards mint.pls framework because of the study factor
-# ----------------------------------------------------
-# directed towards PLS
-out = mixOmics(X = stemcells$gene, Y = unmap(stemcells$celltype), ncomp = 2)
-
-# directed towards mint.PLS
-out = mixOmics(X = stemcells$gene, Y = unmap(stemcells$celltype),
-ncomp = 2, study = stemcells$study)
-
-# directed towards mint.sPLS because of keepX and/or keepY
-out = mixOmics(X = stemcells$gene, Y = unmap(stemcells$celltype),
-ncomp = 2, study = stemcells$study, keepX = c(10, 5, 15))
-
-# directed towards mint.PLS-DA because Y is a factor
-out = mixOmics(X = stemcells$gene, Y = stemcells$celltype, ncomp = 2,
-study = stemcells$study)
-
-# directed towards mint.sPLS-DA because Y is a factor and there is a keepX
-out = mixOmics(X = stemcells$gene, Y = stemcells$celltype, ncomp = 2,
-study = stemcells$study, keepX = c(10, 5, 15))
-}
-
+examples/mixOmics-example.R
 }
 \references{
 mixOmics article:
