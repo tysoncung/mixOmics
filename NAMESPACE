@@ -1,6 +1,4 @@
-useDynLib(mixOmics)
-exportPattern("^[[:alpha:]]+")
-importFrom(Rcpp, evalCpp, sourceCpp)
+
 import(MASS, lattice, igraph, ggplot2,corpcor,parallel, RColorBrewer)
 
 importFrom("grDevices", "as.graphicsAnnot", "chull", "col2rgb",
