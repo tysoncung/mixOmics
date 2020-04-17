@@ -377,8 +377,12 @@ drawIdeogram = function(R, xc=400, yc=400, cir, W,
                 
                 band.po = ((w1+w2)/2)# - ((w2-w1)/3) #position around the circle
                 # print(c(band.po, w1, w2, (w2-w1)/3))
-                band.po.in = R-(W/3.0) #position on the band (middle)
-                draw.text.rt(xc, yc,band.po.in  , band.po , band.text ,
+                ## position of feature names
+                ## if lines, inside the band, else, outside
+                feature.positions <- ifelse(isTRUE(line),
+                                            R-(W/3.0),
+                                            R+W)
+                draw.text.rt(xc, yc,feature.positions  , band.po , band.text ,
                              cex = size.variables, segmentWidth = W, side="in" )
             }
         } #End for row
