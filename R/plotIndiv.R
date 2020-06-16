@@ -898,6 +898,12 @@ shape.input.plotIndiv <-
         df$Block = factor(df$Block, levels = unique(df$Block))
       }
       
+      
+      if (is(object, 'multimodal')) {
+        df$Block <- gsub(pattern = 'Block: ', replacement = 'Modality: ', x = df$Block)
+        df$Block <- factor(df$Block, levels = unique(df$Block))
+      }
+        
       if (style == "3d")
       {
         names(df)[1:3] = c("x", "y", "z")
