@@ -32,7 +32,7 @@
     res <- mapply(assay_value=X, assay_type=names(X), function(assay_value, assay_type) {
         sm <- sm[(sm$assay == assay_type), ]
         sm <- data.frame(names = sm$primary, row.names = sm$colname)
-        rownames(assay_value) <- sm[rownames(assay_value),,drop=FALSE]$primary
+        rownames(assay_value) <- sm[rownames(assay_value),,drop=FALSE]$names
         assay_value
     }, SIMPLIFY = FALSE)
     res
