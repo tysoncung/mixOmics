@@ -1,8 +1,8 @@
 #' Area Under the Curve (AUC) and Receiver Operating Characteristic (ROC)
 #' curves for supervised classification
 #' 
-#' Calculates the AUC and plots ROC for supervised objects from s/plsda,
-#' mint.s/plsda and block.plsda, block.splsda or wrapper.sgccda.
+#' Calculates the AUC and plots ROC for supervised models from s/plsda,
+#' mint.s/plsda and block.plsda, block.splsda or wrapper.sgccda functions.
 #' 
 #' For more than two classes in the categorical outcome Y, the AUC is
 #' calculated as one class vs. the other and the ROC curves one class vs. the
